@@ -1,0 +1,122 @@
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.box h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.box .inputBox {
+    position: relative;
+
+}
+.box .inputBox input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    text-indent: 25px;
+}
+
+/*
+.box .inputBox label {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: white;;
+    pointer-events: none;
+    transition: 0.5s;
+
+}
+
+.box .inputBox input:focus ~ label, .box .inputBox input:focus ~ label {
+    top: -15px;
+    left: 0;
+    color: #03a9f4;
+}
+*/
+
+.box .inputBox label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: white;;
+    pointer-events: none;
+    transition: 0.5s;
+
+}
+
+
+.box input[type="submit"] {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #03a9f4;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.5s;
+    width: 150px;
+}
+
+.box input[type="submit"]:hover {   
+    transform: scale(1.1);
+    filter: brightness(75%);
+}
+
+
+i {
+    width: 26px;
+    float: left;
+    text-align: center;
+    color: #03a9f4;
+    top: 25px;
+    position: relative;
+
+}
+
+.avatar {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    left: calc(50% - 50px);
+    top: -50px;
+}
+
+a {
+    float: right;
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    line-height: 20px;
+    transition: 0.5s;
+}
+
+a:hover {
+    color: #03a9f4;
+    transform: scale(1.1);
+}
