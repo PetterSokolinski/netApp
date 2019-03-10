@@ -43,13 +43,12 @@ export const Input = styled.input`
     outline: none;
     background: transparent;
     border-bottom: 1px solid #fff;
-    text-indent: 30px;
 `
 
 export const Label = styled.label`
     position: absolute;
-    top: 22px; 
-    left: 30px;
+    top: 0; 
+    left: 0;
     padding: 10px 0;
     font-size: 16px;
     color: white;
@@ -67,44 +66,16 @@ export const Button = styled.input`
     cursor: pointer;
     border-radius: 5px;
     transition: 0.5s;
-    width: 150px;
+    width: 100%;
     &:hover {
         transform: scale(1.1);
         filter: brightness(75%);
     }
 `
-export const Icon = styled.span`
-    width: 25px;
-    float: left;
-    text-align: center;
-    color: #03a9f4;
-    top: 30px;
-    position: relative;
-`
-export const Avatar = styled.img`
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    left: calc(50% - 50px);
-    top: -50px;
-`
-export const Link = styled.a`
-    float: right;
-    text-decoration: none;
-    color: white;
-    font-size: 12px;
-    line-height: 20px;
-    transition: 0.5s;
-    &:hover {
-        color: #03a9f4;
-        transform: scale(1.1)
-    }
-`
 
 export const Wrapper = styled.div`
     & ${Input}:hover + ${Label}, ${Input}:valid + ${Label}  {
-        top: -15px;
+        top: -25px;
         left: 0;
         color: #03a9f4;
     }
