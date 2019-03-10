@@ -47,9 +47,11 @@ class Login extends React.Component {
                         </Styled.Wrapper>
                     </Styled.InputBox>
                     <Styled.Button type="submit" name="" value="Login" />
-                    <Styled.Link href="#">Lost your password?</Styled.Link>
+                    <Link to='/password-remind'>
+                        <Styled.Link>Lost your password?</Styled.Link>
+                    </Link>
                     <Link to='/register'>
-                        <Styled.Link href="#">Don't have an account?</Styled.Link>
+                        <Styled.Link>Don't have an account?</Styled.Link>
                     </Link>
                 </form>
                 </Styled.Box>

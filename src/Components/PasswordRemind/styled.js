@@ -9,7 +9,6 @@ export const GlobalStyles = createGlobalStyle`
         background-size: cover;
     }
 `
-
 export const Box = styled.form`
     position: absolute;
     top: 50%;

@@ -1,22 +1,8 @@
 import React from 'react'
 import * as Styled from './styled.js'
-import { Button, Modal } from 'semantic-ui-react'
-import styled from 'styled-components'
+import { Modal } from 'semantic-ui-react'
 
-const ModalHeader = styled.h2`
-    text-align: center;
-    color: white;
-    font-family: sans-serif;
-    padding: 20px;
-`
-const ModalContent = styled.p`
-    text-align: center;
-    font-family: sans-serif;
-    padding: 20px;
-    font-size: 22px;
-    font-weight: 600;
-    color: red;
-`
+
 
 class Register extends React.Component {
     constructor(props) {
@@ -49,10 +35,13 @@ class Register extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const { email, password, confirmPassword, username } = this.state 
-        if (!email.includes('@')) {
+        if (username === '') {
+            this.errorMessage.content = "Username field must be filled!"
+            this.errorMessage.status = true
+        }
+        else if (!email.includes('@')) {
             this.errorMessage.content = "Invalid adress E-mail!"
             this.errorMessage.status = true
-            console.log(this.errorMessage.content)
         }
         else if (password !== confirmPassword) {
             this.errorMessage.content = "Passwords must be the same!"
@@ -60,10 +49,6 @@ class Register extends React.Component {
         }
         else if (password.length < 8) {
             this.errorMessage.content = "Password must contains at lest 8 letters!"
-            this.errorMessage.status = true
-        }
-        else if (username === '' || password.length === '' || email.length === '') {
-            this.errorMessage.content = "Username field must be filled!"
             this.errorMessage.status = true
         }
         
@@ -110,9 +95,9 @@ class Register extends React.Component {
             </Styled.Box>
             
             <Modal basic size='mini' open={modalOpen} onClose={this.handleToggleModal}>
-                <ModalHeader>Error when creating an account</ModalHeader>
-                    <ModalContent>{this.errorMessage.content}</ModalContent>
-                    <Styled.ModalButton onClick={this.handleToggleModal}>OK</Styled.ModalButton>
+                <Styled.ModalHeader>Error when creating an account</Styled.ModalHeader>
+                <Styled.ModalContent>{this.errorMessage.content}</Styled.ModalContent>
+                <Styled.ModalButton onClick={this.handleToggleModal}>OK</Styled.ModalButton>
             </Modal>
             </React.Fragment>
         )
