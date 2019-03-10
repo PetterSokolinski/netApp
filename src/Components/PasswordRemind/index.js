@@ -12,7 +12,6 @@ class PasswordRemind extends React.Component {
         }
         this.message = { 
             status: false,
-            header: "",
             content: "" 
         }
     }
@@ -39,17 +38,14 @@ class PasswordRemind extends React.Component {
         const { email } = this.state 
         if (email === '') {
             this.message.status = false
-            this.message.header = "Error when sending an e-mail!"
             this.message.content = "E-mail field must be filled!"
         }
         else if (!email.includes('@')) {
             this.message.status = false
-            this.message.header = "Error when sending an e-mail!"
             this.message.content = "Invalid adress E-mail!"
         }
         else {
             this.message.status = true
-            this.message.header = "Success when sending an e-mail!"
             this.message.content = "New password has been sent!"
         }
         this.handleToggleModal()
@@ -73,8 +69,7 @@ class PasswordRemind extends React.Component {
                     <Styled.Button type="submit" name="" value="Send me a new password" onClick={this.handleSubmit} />
                 </form>
             </Styled.Box>
-            <Modal closeOnDimmerClick={dimmerClose} basic size='mini' open={modalOpen} onClose={this.handleToggleModal}>
-                <Styled.ModalHeader>{this.message.header}</Styled.ModalHeader>
+            <Modal style={Styled.ModalStyles} closeOnDimmerClick={dimmerClose} basic size='mini' open={modalOpen} onClose={this.handleToggleModal}>
                 <Styled.ModalContent>{this.message.content}</Styled.ModalContent>
                 <Styled.ModalButton onClick={this.handleHistoryPushOrModalClose}>OK</Styled.ModalButton>
             </Modal>

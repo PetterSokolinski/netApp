@@ -99,17 +99,16 @@ export const ModalButton = styled.button`
     }
 `
 
-export const ModalHeader = styled.h2`
-    text-align: center;
-    color: white;
-    font-family: sans-serif;
-    padding: 20px;
-`
 export const ModalContent = styled.p`
     text-align: center;
     font-family: sans-serif;
-    padding: 20px;
-    font-size: 22px;
+    padding: 10px;
+    font-size: 20px;
     font-weight: 600;
     color: red;
 `
+
+export const ModalStyles = {
+    borderRadius: '10px',
+    background: 'black'
+}

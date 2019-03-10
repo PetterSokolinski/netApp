@@ -2,8 +2,6 @@ import React from 'react'
 import * as Styled from './styled.js'
 import { Modal } from 'semantic-ui-react'
 
-
-
 class Register extends React.Component {
     constructor(props) {
         super(props)
@@ -94,8 +92,7 @@ class Register extends React.Component {
                 </form>
             </Styled.Box>
             
-            <Modal basic size='mini' open={modalOpen} onClose={this.handleToggleModal}>
-                <Styled.ModalHeader>Error when creating an account</Styled.ModalHeader>
+            <Modal style={Styled.ModalStyles} basic size='mini' open={modalOpen} onClose={this.handleToggleModal}>
                 <Styled.ModalContent>{this.errorMessage.content}</Styled.ModalContent>
                 <Styled.ModalButton onClick={this.handleToggleModal}>OK</Styled.ModalButton>
             </Modal>
