@@ -26,7 +26,7 @@ class Login extends React.Component {
                 <Styled.GlobalStyles />
                 <Styled.Box>
                 <Styled.Avatar src={userImage} />
-                <Styled.Header>Login</Styled.Header>
+                <Styled.Header>Sign In</Styled.Header>
                 <form autoComplete="off">
                     <Styled.InputBox>
                         <Styled.Icon>
@@ -46,7 +46,7 @@ class Login extends React.Component {
                             <Styled.Label>Password</Styled.Label>
                         </Styled.Wrapper>
                     </Styled.InputBox>
-                    <Styled.Button type="submit" name="" value="Sign in" />
+                    <Styled.Button type="submit" name="" value="Login" />
                     <Styled.Link href="#">Lost your password?</Styled.Link>
                     <Link to='/register'>
                         <Styled.Link href="#">Don't have an account?</Styled.Link>

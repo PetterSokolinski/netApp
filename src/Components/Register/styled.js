@@ -80,3 +80,21 @@ export const Wrapper = styled.div`
         color: #03a9f4;
     }
 `
+
+export const ModalButton = styled.button`
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: transparent;
+    border: 2px solid #03a9f4;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 80%;
+    margin: 5% 10%;
+    transition: 0.3s;
+    &:hover {
+        background: #03a9f4;
+    }
+`

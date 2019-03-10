@@ -1,5 +1,22 @@
 import React from 'react'
 import * as Styled from './styled.js'
+import { Button, Modal } from 'semantic-ui-react'
+import styled from 'styled-components'
+
+const ModalHeader = styled.h2`
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    padding: 20px;
+`
+const ModalContent = styled.p`
+    text-align: center;
+    font-family: sans-serif;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    color: red;
+`
 
 class Register extends React.Component {
     constructor(props) {
@@ -8,9 +25,20 @@ class Register extends React.Component {
             email:'',
             password:'',
             confirmPassword: '',
-            username: ''
+            username: '',
+            modalOpen: false
         }
-        this.errorMessage = ''
+        this.errorMessage = { 
+            status: false,
+            content: "" 
+        }
+    }
+
+    handleToggleModal = () => {
+        this.setState({ modalOpen: !this.state.modalOpen })
+        if (this.errorMessage.status === true) {
+            this.errorMessage.status = false
+        }
     }
 
     handleChange = (event) => {
@@ -20,21 +48,33 @@ class Register extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const { email, password, confirmPassword } = this.state 
+        const { email, password, confirmPassword, username } = this.state 
         if (!email.includes('@')) {
-            this.errorMessage = "Invalid adress E-mail!"
+            this.errorMessage.content = "Invalid adress E-mail!"
+            this.errorMessage.status = true
+            console.log(this.errorMessage.content)
         }
         else if (password !== confirmPassword) {
-            this.errorMessage = "Passwords are not the same!"
+            this.errorMessage.content = "Passwords must be the same!"
+            this.errorMessage.status = true
         }
         else if (password.length < 8) {
-            this.errorMessage = "Password must contains at lest 8 letters!"
+            this.errorMessage.content = "Password must contains at lest 8 letters!"
+            this.errorMessage.status = true
         }
-        console.log(this.errorMessage)
+        else if (username === '' || password.length === '' || email.length === '') {
+            this.errorMessage.content = "Username field must be filled!"
+            this.errorMessage.status = true
+        }
+        
+        if (this.errorMessage.status === true) {
+            this.handleToggleModal()
+            this.errorMessage.status = false 
+        }
     }
 
     render() {
-        const { email, password, confirmPassword, username } = this.state 
+        const { email, password, confirmPassword, username, modalOpen } = this.state 
         return (
             <React.Fragment>
             <Styled.GlobalStyles />
@@ -68,6 +108,12 @@ class Register extends React.Component {
                     <Styled.Button type="submit" name="" value="Register my account" onClick={this.handleSubmit} />
                 </form>
             </Styled.Box>
+            
+            <Modal basic size='mini' open={modalOpen} onClose={this.handleToggleModal}>
+                <ModalHeader>Error when creating an account</ModalHeader>
+                    <ModalContent>{this.errorMessage.content}</ModalContent>
+                    <Styled.ModalButton onClick={this.handleToggleModal}>OK</Styled.ModalButton>
+            </Modal>
             </React.Fragment>
         )
     }
