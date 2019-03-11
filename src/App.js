@@ -14,7 +14,7 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/password-remind" component={PasswordRemind} />
-          <Route path="/home" component={SidebarMenu} />
+          <Route path="/overview" component={SidebarMenu} />
         </Switch>
       </Router>
     )

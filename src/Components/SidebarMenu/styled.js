@@ -48,7 +48,7 @@ export const styles = {
     background: 'rgba(0, 0, 0, 0.3)'
   }
 }
-export const LogoutItem = styled.a`
+export const LogoutItem = styled.div`
   display: block;
   padding: 0.8em;
   outline: none;
@@ -113,7 +113,7 @@ export const ProjectIcon = styled(Project)`
 `
 
 
-export const MenuItem = styled.a`
+export const MenuItem = styled.div`
   display: block;
   padding: 0.8em;
   outline: none;
