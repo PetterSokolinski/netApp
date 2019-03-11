@@ -3,6 +3,7 @@ import Login from './Components/Login'
 import Register from './Components/Register'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import PasswordRemind from './Components/PasswordRemind'
+import SidebarMenu from './Components/SidebarMenu'
 
 
 class App extends Component {
@@ -11,8 +12,9 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/password-remind" component={PasswordRemind} />
+          <Route path="/register" component={Register} />
+          <Route path="/password-remind" component={PasswordRemind} />
+          <Route path="/home" component={SidebarMenu} />
         </Switch>
       </Router>
     )
