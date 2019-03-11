@@ -3,6 +3,7 @@ import { Lock } from 'styled-icons/material'
 import { User } from 'styled-icons/boxicons-solid'
 import userImage from '../../Assets/logouser.png'
 import { Link } from 'react-router-dom'
+import { withRouter } from "react-router-dom"
 import * as Styled from './styled.js'
 
 class Login extends React.Component {
@@ -19,6 +20,10 @@ class Login extends React.Component {
         this.setState({ [name]: value })
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.props.history.push("/overview")
+    }
     render() {
         const { email, password } = this.state
         return(
@@ -46,7 +51,7 @@ class Login extends React.Component {
                             <Styled.Label>Password</Styled.Label>
                         </Styled.Wrapper>
                     </Styled.InputBox>
-                    <Styled.Button type="submit" name="" value="Login" />
+                    <Styled.Button type="submit" name="" value="Login" onClick={this.handleSubmit} />
                     <Link to='/password-remind'>
                         <Styled.Link>Lost your password?</Styled.Link>
                     </Link>
@@ -60,4 +65,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+export default withRouter(Login)

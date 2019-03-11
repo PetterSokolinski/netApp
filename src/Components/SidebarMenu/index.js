@@ -3,27 +3,48 @@ import { slide as Sidebar } from 'react-burger-menu'
 import * as Styled from './styled.js'
 import { Link } from 'react-router-dom'
 
+
 class SidebarMenu extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      sidebarOpen: false
+    }
+  }
+
+  handleToggleSidebar() {
+    this.setState({ sidebarOpen: !this.state.sidebarOpen })
+  }
   
   render() {
+    const { sidebarOpen } = this.state
+    const { children } = this.props
     return (
       <div id="outer-container">
-      <Sidebar styles={Styled.styles} pageWrapId={"page-wrap"} outerContainerId={"outer-container"}>
+      <Sidebar isOpen={sidebarOpen} styles={Styled.styles} pageWrapId={"page-wrap"} outerContainerId={"outer-container"}>
         <Styled.MenuItem>
-          <Styled.RemoveRedEyeIcon />
-          <span>Overview</span>
+          <Link to="/overview" onClick={this.handleToggleSidebar}>
+            <Styled.RemoveRedEyeIcon />
+            <span>Overview</span>
+          </Link>
         </Styled.MenuItem>
         <Styled.MenuItem>
-          <Styled.ProjectIcon />
-          <span>Projects</span>
+          <Link to="/projects" onClick={this.handleToggleSidebar}>
+            <Styled.ProjectIcon />
+            <span>Projects</span>
+          </Link>
         </Styled.MenuItem>
         <Styled.MenuItem>
-          <Styled.TaskIcon />
-          <span>Tasks</span>
+          <Link to="/tasks" onClick={this.handleToggleSidebar}>
+            <Styled.TaskIcon />
+            <span>Tasks</span>
+          </Link>
         </Styled.MenuItem>
         <Styled.MenuItem>
-          <Styled.SettingsIcon />
-          <span>Account Settings</span>
+          <Link to="/account-settings" onClick={this.handleToggleSidebar}>
+            <Styled.SettingsIcon />
+            <span>Account Settings</span>
+          </Link>
         </Styled.MenuItem>
         <Styled.LogoutItem>
           <Link to="/">
@@ -32,8 +53,9 @@ class SidebarMenu extends React.Component {
           </Link>
         </Styled.LogoutItem>
       </Sidebar>
-      <main id="page-wrap"> <Styled.Dupa>asdasdas</Styled.Dupa></main>
-      
+      <main id="page-wrap">
+        {children}
+      </main>
       </div>
     )
   }

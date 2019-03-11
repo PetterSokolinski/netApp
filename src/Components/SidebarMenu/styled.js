@@ -62,13 +62,6 @@ export const LogoutItem = styled.div`
   }
 `
 
-export const Dupa = styled.div`
-  position: relative;
-  left: 50%;
-  top: 100%;
-  font-size: 50px;
-`
-
 export const LogOutIcon = styled(LogOut)`
   width: 25px;
   text-align: center;

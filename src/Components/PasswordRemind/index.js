@@ -26,7 +26,7 @@ class PasswordRemind extends React.Component {
 
     handleHistoryPushOrModalClose = () => {
         if (this.message.status) {
-            this.props.history.push("/");
+            this.props.history.push("/")
         }
         else {
             this.handleToggleModal()
