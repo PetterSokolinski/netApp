@@ -57,7 +57,7 @@ export const LogoutItem = styled.div`
   cursor: pointer;
   position: relative;
   top: 40%;
-  &:hover, &:active {
+  &:hover {
     filter: brightness(75%);
   }
 `
@@ -113,8 +113,11 @@ export const MenuItem = styled.div`
   color: #03a9f4;
   font-size: 22px;
   cursor: pointer;
-  &:hover, &:active {
+  &:hover {
     filter: brightness(75%);
   }
-
 `
+
+export const activeLink = {
+  textDecoration: 'underline'
+}

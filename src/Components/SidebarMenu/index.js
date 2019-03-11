@@ -1,7 +1,7 @@
 import React from 'react'
 import { slide as Sidebar } from 'react-burger-menu'
 import * as Styled from './styled.js'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 
 class SidebarMenu extends React.Component {
@@ -23,28 +23,28 @@ class SidebarMenu extends React.Component {
       <div id="outer-container">
       <Sidebar isOpen={sidebarOpen} styles={Styled.styles} pageWrapId={"page-wrap"} outerContainerId={"outer-container"}>
         <Styled.MenuItem>
-          <Link to="/overview" onClick={this.handleToggleSidebar}>
+          <NavLink activeStyle={Styled.activeLink} to="/overview" onClick={this.handleToggleSidebar}>
             <Styled.RemoveRedEyeIcon />
             <span>Overview</span>
-          </Link>
+          </NavLink >
         </Styled.MenuItem>
         <Styled.MenuItem>
-          <Link to="/projects" onClick={this.handleToggleSidebar}>
+          <NavLink activeStyle={Styled.activeLink} to="/projects" onClick={this.handleToggleSidebar}>
             <Styled.ProjectIcon />
             <span>Projects</span>
-          </Link>
+          </NavLink >
         </Styled.MenuItem>
         <Styled.MenuItem>
-          <Link to="/tasks" onClick={this.handleToggleSidebar}>
+          <NavLink activeStyle={Styled.activeLink} to="/tasks" onClick={this.handleToggleSidebar}>
             <Styled.TaskIcon />
             <span>Tasks</span>
-          </Link>
+          </NavLink >
         </Styled.MenuItem>
         <Styled.MenuItem>
-          <Link to="/account-settings" onClick={this.handleToggleSidebar}>
+          <NavLink activeStyle={Styled.activeLink} to="/account-settings" onClick={this.handleToggleSidebar}>
             <Styled.SettingsIcon />
             <span>Account Settings</span>
-          </Link>
+          </NavLink >
         </Styled.MenuItem>
         <Styled.LogoutItem>
           <Link to="/">
