@@ -16,7 +16,9 @@ class Linker extends React.Component {
             case 'tasks':
                 return <Tasks />                
             case 'account-settings':
-                return <AccountSettings />             
+                return <AccountSettings />
+            default:
+                return <div />             
         }
     }
 

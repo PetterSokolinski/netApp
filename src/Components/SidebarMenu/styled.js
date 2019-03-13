@@ -1,9 +1,21 @@
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
+import backgroundImage from '../../Assets/bg2.jpg'
 import { LogOut } from 'styled-icons/boxicons-regular/LogOut'
 import { Settings } from 'styled-icons/material/Settings'
 import { RemoveRedEye } from 'styled-icons/material/RemoveRedEye'
 import { Task } from 'styled-icons/boxicons-regular/Task'
 import { Project } from 'styled-icons/octicons/Project'
+
+export const GlobalStyles = createGlobalStyle`
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: url(${backgroundImage});
+        background-size: cover;
+    }
+`
+
 
 export const styles = {
   bmBurgerButton: {

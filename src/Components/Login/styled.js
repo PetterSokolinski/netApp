@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import backgroundImage from '../../Assets/bg.png'
 export const GlobalStyles = createGlobalStyle`
     body {
-        margin: 100px;
+        margin: 0;
         padding: 0;
         font-family: sans-serif;
         background: url(${backgroundImage});
