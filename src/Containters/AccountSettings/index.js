@@ -1,22 +1,27 @@
 import React from 'react'
 import * as Styled from './styled.js'
-import ModalExampleMultiple from '../../Components/NestedModal'
+import NestedModal from '../../Components/NestedModal'
 
 class AccountSettings extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            modalOpen: false
+            modalOpen1: false,
+            modalOpen2: false
         }
     }
 
 
-    handleToggleModal = () => {
-        this.setState({ modalOpen: !this.state.modalOpen })
+    handleToggleModal1 = () => {
+        this.setState({ modalOpen1: !this.state.modalOpen1 })
+    }
+    handleToggleModal2 = () => {
+        this.setState({ modalOpen2: !this.state.modalOpen2 })
     }
 
+
     render() {
-        const { modalOpen } = this.state
+        const { modalOpen1, modalOpen2 } = this.state
         return (
             <React.Fragment>
                 <Styled.Wrapper>
@@ -31,12 +36,12 @@ class AccountSettings extends React.Component {
                         </Styled.UsernameBox>
                     </Styled.RightContainer>
                     <Styled.LeftContainer>
-                            <ModalExampleMultiple open={modalOpen} handleClose={this.handleToggleModal}>
-                                <Styled.Button onClick={this.handleToggleModal}>Change your adress E-mail</Styled.Button>
-                            </ModalExampleMultiple>
-                            <ModalExampleMultiple open={modalOpen} handleClose={this.handleToggleModal}>
-                                <Styled.Button onClick={this.handleToggleModal}>Change your password</Styled.Button>
-                            </ModalExampleMultiple>
+                            <NestedModal open={modalOpen1} handleClose={this.handleToggleModal1} text="E-mail">
+                                <Styled.Button onClick={this.handleToggleModal1}>Change your adress E-mail</Styled.Button>
+                            </NestedModal>
+                            <NestedModal open={modalOpen2} handleClose={this.handleToggleModal2} text="password">
+                                <Styled.Button onClick={this.handleToggleModal2}>Change your password</Styled.Button>
+                            </NestedModal>
                     </Styled.LeftContainer>
                 </Styled.Wrapper>
             </React.Fragment>

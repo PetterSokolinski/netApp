@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Icon, Modal } from 'semantic-ui-react'
 
-class NestedModal extends Component {
+class CustomModal extends Component {
   state = { open: false }
 
   open = () => this.setState({ open: true })
@@ -12,46 +12,43 @@ class NestedModal extends Component {
 
   render() {
     const { open } = this.state
-
+    const content = "Reset " + this.props.text
+    console.log(content)
     return (
       <Modal
         open={open}
         onOpen={this.open}
         onClose={this.close}
-        size='small'
+        size="tiny"
         trigger={
           <Button primary icon>
             Proceed <Icon name='right chevron' />
           </Button>
         }
       >
-        <Modal.Header>Modal #2</Modal.Header>
+        <Modal.Header>Write down new {this.props.text}</Modal.Header>
         <Modal.Content>
-          <p>That's everything!</p>
+            <input type="text" />
+            <input type="text" />
         </Modal.Content>
         <Modal.Actions>
-          <Button icon='check' content='All Done' onClick={this.close} />
+          <Button icon='check' content={content} onClick={this.close} />
         </Modal.Actions>
       </Modal>
     )
   }
 }
 
-const ModalExampleMultiple = (props) => (
-  <Modal trigger={props.children} open={props.open} onClose={props.handleClose}>
-    <Modal.Header>Modal #1</Modal.Header>
-    <Modal.Content image>
-      <div className='image'>
-        <Icon name='right arrow' />
-      </div>
-      <Modal.Description>
-        <p>We have more to share with you. Follow us along to modal 2</p>
-      </Modal.Description>
+const NestedModal = (props) => (
+  <Modal size="small" trigger={props.children} open={props.open} onClose={props.handleClose}>
+    <Modal.Header>Change your {props.text}</Modal.Header>
+    <Modal.Content>
+        <input type="text" />
     </Modal.Content>
     <Modal.Actions>
-      <NestedModal handleClose={props.handleClose} />
+      <CustomModal handleClose={props.handleClose} text={props.text} />
     </Modal.Actions>
   </Modal>
 )
 
-export default ModalExampleMultiple
+export default NestedModal

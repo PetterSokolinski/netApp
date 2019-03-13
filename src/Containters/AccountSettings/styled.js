@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import { AddAPhoto } from 'styled-icons/material/AddAPhoto'
 import { User } from 'styled-icons/boxicons-solid'
 import { Edit } from 'styled-icons/boxicons-solid/Edit'
-import { Modal } from 'semantic-ui-react'
-
 
 export const Wrapper = styled.div`
     box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
