@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Icon, Modal } from 'semantic-ui-react'
+import * as Styled from './styled.js'
+
+
 
 class CustomModal extends Component {
   state = { open: false }
@@ -13,7 +16,6 @@ class CustomModal extends Component {
   render() {
     const { open } = this.state
     const content = "Reset " + this.props.text
-    console.log(content)
     return (
       <Modal
         open={open}
@@ -26,10 +28,11 @@ class CustomModal extends Component {
           </Button>
         }
       >
-        <Modal.Header>Write down new {this.props.text}</Modal.Header>
+        <Modal.Header style={Styled.HeaderModalStyles}>Write down new {this.props.text}</Modal.Header>
         <Modal.Content>
-            <input type="text" />
-            <input type="text" />
+          <Styled.Input type="text" name={this.props.text} placeholder={"Your new " + this.props.text} autoComplete="off" />
+          <br /><br />
+          <Styled.Input type="text" name={this.props.text} placeholder={"Repeat your new " + this.props.text} autoComplete="off" />
         </Modal.Content>
         <Modal.Actions>
           <Button icon='check' content={content} onClick={this.close} />
@@ -41,9 +44,9 @@ class CustomModal extends Component {
 
 const NestedModal = (props) => (
   <Modal size="small" trigger={props.children} open={props.open} onClose={props.handleClose}>
-    <Modal.Header>Change your {props.text}</Modal.Header>
+    <Modal.Header style={Styled.HeaderModalStyles} >Change your {props.text}</Modal.Header>
     <Modal.Content>
-        <input type="text" />
+      <Styled.Input type="text" name={props.text} placeholder={"Your " + props.text} autoComplete="off" />
     </Modal.Content>
     <Modal.Actions>
       <CustomModal handleClose={props.handleClose} text={props.text} />
