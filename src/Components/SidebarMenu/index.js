@@ -23,41 +23,41 @@ class SidebarMenu extends React.Component {
       <React.Fragment>
         <Styled.GlobalStyles />
         <div id="outer-container">
-        <Sidebar isOpen={sidebarOpen} styles={Styled.styles} pageWrapId={"page-wrap"} outerContainerId={"outer-container"}>
-          <Styled.MenuItem>
-            <NavLink activeStyle={Styled.activeLink} to="/overview" onClick={this.handleToggleSidebar}>
-              <Styled.RemoveRedEyeIcon />
-              <span>Overview</span>
-            </NavLink >
-          </Styled.MenuItem>
-          <Styled.MenuItem>
-            <NavLink activeStyle={Styled.activeLink} to="/projects" onClick={this.handleToggleSidebar}>
-              <Styled.ProjectIcon />
-              <span>Projects</span>
-            </NavLink >
-          </Styled.MenuItem>
-          <Styled.MenuItem>
-            <NavLink activeStyle={Styled.activeLink} to="/tasks" onClick={this.handleToggleSidebar}>
-              <Styled.TaskIcon />
-              <span>Tasks</span>
-            </NavLink >
-          </Styled.MenuItem>
-          <Styled.MenuItem>
-            <NavLink activeStyle={Styled.activeLink} to="/account-settings" onClick={this.handleToggleSidebar}>
-              <Styled.SettingsIcon />
-              <span>Account Settings</span>
-            </NavLink >
-          </Styled.MenuItem>
-          <Styled.LogoutItem>
-            <Link to="/">
-              <Styled.LogOutIcon />
-              <span>Logout</span>
-            </Link>
-          </Styled.LogoutItem>
-        </Sidebar>
-        <main id="page-wrap">
-          {children}
-        </main>
+          <Sidebar isOpen={sidebarOpen} styles={Styled.styles} pageWrapId={"page-wrap"} outerContainerId={"outer-container"}>
+            <Styled.MenuItem>
+              <NavLink activeStyle={Styled.activeLink} to="/overview" onClick={this.handleToggleSidebar}>
+                <Styled.RemoveRedEyeIcon />
+                <span>Overview</span>
+              </NavLink >
+            </Styled.MenuItem>
+            <Styled.MenuItem>
+              <NavLink activeStyle={Styled.activeLink} to="/projects" onClick={this.handleToggleSidebar}>
+                <Styled.ProjectIcon />
+                <span>Projects</span>
+              </NavLink >
+            </Styled.MenuItem>
+            <Styled.MenuItem>
+              <NavLink activeStyle={Styled.activeLink} to="/tasks" onClick={this.handleToggleSidebar}>
+                <Styled.TaskIcon />
+                <span>Tasks</span>
+              </NavLink >
+            </Styled.MenuItem>
+            <Styled.MenuItem>
+              <NavLink activeStyle={Styled.activeLink} to="/account-settings" onClick={this.handleToggleSidebar}>
+                <Styled.SettingsIcon />
+                <span>Account Settings</span>
+              </NavLink >
+            </Styled.MenuItem>
+            <Styled.LogoutItem>
+              <Link to="/">
+                <Styled.LogOutIcon />
+                <span>Logout</span>
+              </Link>
+            </Styled.LogoutItem>
+          </Sidebar>
+          <main id="page-wrap">
+            {children}
+          </main>
         </div>
       </React.Fragment>
     )

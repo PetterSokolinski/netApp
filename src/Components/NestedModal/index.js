@@ -46,7 +46,7 @@ const NestedModal = (props) => (
   <Modal size="small" trigger={props.children} open={props.open} onClose={props.handleClose}>
     <Modal.Header style={Styled.HeaderModalStyles} >Change your {props.text}</Modal.Header>
     <Modal.Content>
-      <Styled.Input type="text" name={props.text} placeholder={"Your " + props.text} autoComplete="off" />
+      <Styled.Input type="text" name={props.text} placeholder="Your password" autoComplete="off" />
     </Modal.Content>
     <Modal.Actions>
       <CustomModal handleClose={props.handleClose} text={props.text} />
