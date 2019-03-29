@@ -2,63 +2,51 @@ import styled from 'styled-components'
 import { Edit } from 'styled-icons/boxicons-solid/Edit'
 import { DeleteForever } from 'styled-icons/material/DeleteForever'
 
-export const ContentWrapper = styled.div`
+export const Container = styled.div`
+    cursor: pointer;
+    width: 60%;
+    height: 50px;
+    border: 5px solid #03a9f4;
+    border-radius: 15px;
     position: relative;
-    width: 100%;
-    height: auto;
-`
-
-export const TaskName = styled.h1`
-    text-align: center;
-    font-style: italic;
-    border-bottom: 1px solid grey;
-    width: 50%;
     left: 50%;
     transform: translateX(-50%);
-    position: relative;
-`
-export const ProjectName = styled.h2`
-    position: relative;
-    width: 50%;
-    float: right;
-    text-align: center;
-    padding-top: 2vw;
-`
-
-export const TagContainer = styled.span`
-    margin: 6px
-    padding: 6px;
-    font-size: 2.5vh;
-    border: 1px solid #03a9f4;
-    border-radius: 5px;
-    cursor: pointer;
-    &: hover {
-        border: 2px solid #03a9f4;
-        margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    @media (max-width: 800px) { 
+        padding: 10px;
+    }
+    &:hover {
         box-shadow: 1px -1px 10px 0px rgba(0, 0, 0, 0.75);
     }
 `
-
-export const TagsWrapper = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+export const ProjectName = styled.div`
+    font-size: 1.5vw;
+    @media (max-width: 800px) { 
+        font-size: 2vw;
+    }
 `
-export const IconsWrapper = styled.div`
-    display: flex;
-    width: 50%;
-    float: right;
-    right: 5vw;
-    bottom: 2vw;
-    position: relative;
+export const CompanyName = styled.div`
+    font-size: 1.5vw;
+    @media (max-width: 800px) { 
+        font-size: 2vw;
+    }
+`
+export const Label = styled.span`
+    font-size: 2vw;
+    font-style: italic;
+    @media (max-width: 800px) { 
+        font-size: 2.5vw;
+    }
 `
 
 export const EditIcon = styled(Edit)`
-    right: -12vw;
-    position: relative;
     cursor: pointer;
-    transition: 0.3s;
     opacity: 0;
-    ${ContentWrapper}:hover & {
+    transition: 0.3s;
+    ${Container}:hover & {
         opacity: 1;
     }
     &:hover {
@@ -67,22 +55,20 @@ export const EditIcon = styled(Edit)`
     }
 `
 
-export const DeleteIcon = styled(DeleteForever)`
-    right: -15vw;
-    position: relative;
+export const DeleteForeverIcon = styled(DeleteForever)`
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s;
     color: red;
-    cursor: pointer;
-    opacity: 0;
-    transition: 0.3s;
-    ${ContentWrapper}:hover & {
+    ${Container}:hover & {
         opacity: 1;
     }
     &:hover {
         box-shadow: 1px -1px 10px 0px rgba(0, 0, 0, 0.75);
         border-radius: 25%;
     }
-`
 
+`
 
 
 export const HeaderModalStyles = {
@@ -107,16 +93,16 @@ export const Input = styled.input`
 	font-family: serif;
 
 `
-export const Container = styled.div`
+export const InputContainer = styled.div`
     display: block;
     padding: 9px;
     border: 1px solid #DDDDDD;
     margin-bottom: 30px;
     border-radius: 3px;
-    width: 50%;
+    width: 100%;
 `
 
-export const Label = styled.label`
+export const InputLabel = styled.label`
     display: block;
 	float: left;
 	margin-top: -20px;
@@ -130,7 +116,8 @@ export const Label = styled.label`
 `
 
 export const Span = styled.span`
-    background: #03a9f4;
+    border: 1px solid #03a9f4;
+    border-radius: 2px;
 	display: block;
 	padding: 3px;
 	margin: 0 -9px -9px -9px;
@@ -138,13 +125,4 @@ export const Span = styled.span`
 	color: black;
 	font-family: sans-serif;
 	font-size: 12px;
-`
-export const Wrapper = styled.div`
-    display: flex;
-`
-
-export const DropdownContainer = styled.div`
-    position: relative;
-    left: 8vw;
-    top: 1vw;
 `

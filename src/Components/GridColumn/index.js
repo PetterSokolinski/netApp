@@ -1,27 +1,76 @@
 import React from 'react'
-import { Grid, Modal, Icon, Button, Header } from 'semantic-ui-react'
+import { Grid, Modal, Icon, Dropdown, Button as SemanticButton, Header } from 'semantic-ui-react'
 import * as Styled from './styled.js'
 
+const options = [
+    { key: 'angular', text: 'Angular', value: 'angular' },
+    { key: 'css', text: 'CSS', value: 'css' },
+    { key: 'design', text: 'Graphic Design', value: 'design' },
+    { key: 'ember', text: 'Ember', value: 'ember' },
+    { key: 'html', text: 'HTML', value: 'html' },
+    { key: 'ia', text: 'Information Architecture', value: 'ia' },
+    { key: 'javascript', text: 'Javascript', value: 'javascript' },
+    { key: 'mech', text: 'Mechanical Engineering', value: 'mech' },
+    { key: 'meteor', text: 'Meteor', value: 'meteor' },
+    { key: 'node', text: 'NodeJS', value: 'node' },
+    { key: 'plumbing', text: 'Plumbing', value: 'plumbing' },
+    { key: 'python', text: 'Python', value: 'python' },
+    { key: 'rails', text: 'Rails', value: 'rails' },
+    { key: 'react', text: 'React', value: 'react' },
+    { key: 'repair', text: 'Kitchen Repair', value: 'repair' },
+    { key: 'ruby', text: 'Ruby', value: 'ruby' },
+    { key: 'ui', text: 'UI Design', value: 'ui' },
+    { key: 'ux', text: 'User Experience', value: 'ux' },
+  ]
 
+const stateOptions = [
+    { key: 'angular', text: 'Angular', value: 'angular' },
+    { key: 'css', text: 'CSS', value: 'css' },
+    { key: 'design', text: 'Graphic Design', value: 'design' },
+    { key: 'ember', text: 'Ember', value: 'ember' },
+    { key: 'html', text: 'HTML', value: 'html' },
+    { key: 'ia', text: 'Information Architecture', value: 'ia' },
+    { key: 'javascript', text: 'Javascript', value: 'javascript' },
+    { key: 'mech', text: 'Mechanical Engineering', value: 'mech' },
+    { key: 'meteor', text: 'Meteor', value: 'meteor' },
+    { key: 'node', text: 'NodeJS', value: 'node' },
+    { key: 'plumbing', text: 'Plumbing', value: 'plumbing' },
+    { key: 'python', text: 'Python', value: 'python' },
+    { key: 'rails', text: 'Rails', value: 'rails' },
+    { key: 'react', text: 'React', value: 'react' },
+    { key: 'repair', text: 'Kitchen Repair', value: 'repair' },
+    { key: 'ruby', text: 'Ruby', value: 'ruby' },
+    { key: 'ui', text: 'UI Design', value: 'ui' },
+    { key: 'ux', text: 'User Experience', value: 'ux' },
+]
+
+// TODO: zmienialne pola dodac
 class GridColumn extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            modalOpen: false
+            modalDeleteOpen: false,
+            modalEditOpen: false,
+            taskName:'',
+            projectName:'',
+            tags: []
         }
     }
-    handleToggleModal = () => {
-        this.setState({ modalOpen: !this.state.modalOpen })
+    handleToggleDeleteModal = () => {
+        this.setState({ modalDeleteOpen: !this.state.modalDeleteOpen })
+    }
+    handleToggleEditModal = () => {
+        this.setState({ modalEditOpen: !this.state.modalEditOpen })
     }
 
     render() {
         const { object } = this.props
-        const { modalOpen } = this.state
+        const { modalDeleteOpen, modalEditOpen } = this.state
         return (
             <React.Fragment>
                 {(object !== undefined) && 
                     <React.Fragment>
-                        <Modal open={modalOpen} onClose={this.handleToggleModal} basic size='tiny'>
+                        <Modal open={modalDeleteOpen} onClose={this.handleToggleDeleteModal} basic size='tiny'>
                             <Header icon='archive' content={object.taskName} />
                             <Modal.Content>
                             <p>
@@ -29,12 +78,29 @@ class GridColumn extends React.Component {
                             </p>
                             </Modal.Content>
                             <Modal.Actions>
-                            <Button color='red' inverted onClick={this.handleToggleModal}>
+                            <SemanticButton color='red' inverted onClick={this.handleToggleDeleteModal}>
                                 <Icon name='remove' /> No
-                            </Button>
-                            <Button color='green' inverted onClick={this.handleToggleModal}>
+                            </SemanticButton>
+                            <SemanticButton color='green' inverted onClick={this.handleToggleDeleteModal}>
                                 <Icon name='checkmark' /> Yes
-                            </Button>
+                            </SemanticButton>
+                            </Modal.Actions>
+                        </Modal>
+                        <Modal open={modalEditOpen} onClose={this.handleToggleEditModal} centered={false} size="small"> 
+                            <Modal.Header style={Styled.HeaderModalStyles}>
+                                {"Edit " + object.taskName}
+                            </Modal.Header>
+                            <Modal.Content>
+                                <Styled.Wrapper>
+                                    <InputComponent text="Name" type="task" />
+                                    <Styled.DropdownContainer>
+                                        <Dropdown placeholder='Project' search selection options={stateOptions} />
+                                    </Styled.DropdownContainer>
+                                </Styled.Wrapper>
+                                <Dropdown placeholder='Tags' fluid multiple selection options={options} />
+                            </Modal.Content>
+                            <Modal.Actions>
+                                <SemanticButton positive onClick={this.handleToggleEditModal}>Submit</SemanticButton>
                             </Modal.Actions>
                         </Modal>
                         <Grid.Column width={8}>
@@ -47,8 +113,8 @@ class GridColumn extends React.Component {
                                 ))}
                                 </Styled.TagsWrapper>
                                 <Styled.IconsWrapper>
-                                    <Styled.EditIcon size="40" />
-                                    <Styled.DeleteIcon size="40" onClick={this.handleToggleModal} />
+                                    <Styled.EditIcon size="40" onClick={this.handleToggleEditModal} />
+                                    <Styled.DeleteIcon size="40" onClick={this.handleToggleDeleteModal} />
                                 </Styled.IconsWrapper>
                             </Styled.ContentWrapper>
                         </Grid.Column>
@@ -59,5 +125,13 @@ class GridColumn extends React.Component {
     }
 
 }
+
+const InputComponent = (props) => (
+    <Styled.Container>
+        <Styled.Label for={props.text}>{props.text}</Styled.Label>
+        <Styled.Input type="text" name={props.text} />
+        <Styled.Span>{"Enter the name of the " + props.type}</Styled.Span>
+    </Styled.Container>
+)
 
 export default GridColumn
