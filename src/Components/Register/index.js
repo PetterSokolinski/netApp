@@ -54,6 +54,8 @@ class Register extends React.Component {
             this.handleToggleModal()
             this.errorMessage.status = false 
         }
+
+        //send request
     }
 
     render() {
