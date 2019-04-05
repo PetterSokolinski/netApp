@@ -1,9 +1,7 @@
 import React from 'react'
-import WeekCalendar from 'react-week-calendar'
+import WeekCalendar from '../../Components/WeekScheduler'
 import 'react-week-calendar/dist/style.css'
 import styled from 'styled-components'
-import moment from 'moment'
-import Login from '../../Components/Login'
 
 const Container = styled.div`
     position: absolute;
@@ -63,10 +61,10 @@ class Overview extends React.Component {
         return (
             <Container>
                 <WeekCalendar scaleUnit={60} 
-                    selectedIntervals = {this.state.selectedIntervals}
-                    onIntervalSelect = {this.handleSelect}
-                    onIntervalUpdate = {this.handleEventUpdate}
-                    onIntervalRemove = {this.handleEventRemove} />
+                    selectedIntervals={this.state.selectedIntervals}
+                    onIntervalSelect={this.handleSelect}
+                    onIntervalUpdate={this.handleEventUpdate}
+                    onIntervalRemove={this.handleEventRemove} />
             </Container>
         )
     }
