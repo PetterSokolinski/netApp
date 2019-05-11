@@ -70,7 +70,7 @@ export const RightContainer = styled.div`
 export const Input = styled.input`
     border: none;
     outline: none;
-    font-size: 26px;
+    font-size: 22px;
     color: black;
     letter-spacing: 5px;
     background: transparent;

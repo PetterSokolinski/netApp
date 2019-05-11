@@ -50,7 +50,7 @@ const tagsTab = [
     "tag1", "tag1tag1", "tag3", "tag1tag1tag1", "tag2", "tag3", "tag1", "tag2", "tag3"
 ]
 
-const objects = [
+/*const objects = [
     { taskName: 'angular1', projectName: 'Angular', tags: tagsTab },
     { taskName: 'angular2', projectName: 'Angular', tags: tagsTab },
     { taskName: 'angular3', projectName: 'Angular', tags: tagsTab },
@@ -58,7 +58,7 @@ const objects = [
     { taskName: 'angular5', projectName: 'Angular', tags: tagsTab },
     { taskName: 'angular6', projectName: 'Angular', tags: tagsTab },
     { taskName: 'angular7', projectName: 'Angular', tags: tagsTab },
-]
+]*/
 
 
 
@@ -76,6 +76,7 @@ class Tasks extends React.Component {
 
     render() {
         const { modalOpen } = this.state
+        const objects = JSON.parse(localStorage.getItem('user')).tasks
         let tasks = []
         for(let index = 0; index < objects.length; index = index + 2) {
             tasks.push(<TaskView object1={objects[index]} object2={objects[index + 1]} />)

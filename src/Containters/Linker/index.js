@@ -4,6 +4,8 @@ import Projects from '../Projects'
 import Overview from '../Overview'
 import Tasks from '../Tasks'
 import AccountSettings from '../AccountSettings'
+import { withRouter } from "react-router-dom"
+
 class Linker extends React.Component {
 
     handleComponentRender = () => {
@@ -23,6 +25,9 @@ class Linker extends React.Component {
     }
 
     render() {
+        if(!localStorage.getItem('user')) {
+            this.props.history.push("/")
+          }
         return (
             <SidebarMenu>
                 {this.handleComponentRender()}
@@ -31,4 +36,4 @@ class Linker extends React.Component {
     }
  }
 
- export default Linker
+ export default withRouter(Linker)

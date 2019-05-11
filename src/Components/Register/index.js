@@ -1,6 +1,9 @@
 import React from 'react'
 import * as Styled from './styled.js'
 import { Modal } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { registerUserAction } from '../../Actions/authenticationActions'
+import { withRouter } from "react-router-dom"
 
 class Register extends React.Component {
     constructor(props) {
@@ -30,7 +33,8 @@ class Register extends React.Component {
         this.setState({ [name]: value })
     }
 
-    handleSubmit = (event) => {
+
+    handleSubmit = async (event) => {
         event.preventDefault()
         const { email, password, confirmPassword, username } = this.state 
         if (username === '') {
@@ -54,8 +58,14 @@ class Register extends React.Component {
             this.handleToggleModal()
             this.errorMessage.status = false 
         }
-
-        //send request
+        else {
+            console.log("wchodze")
+            const data = {
+                username, email, password
+              }
+            await this.props.dispatch(registerUserAction(data))
+            this.props.history.push("/")
+        }
     }
 
     render() {
@@ -103,4 +113,8 @@ class Register extends React.Component {
     }
 }
 
-export default Register
+const mapStateToProps = (response) => ({
+    response
+  })
+
+export default withRouter(connect(mapStateToProps)(Register))

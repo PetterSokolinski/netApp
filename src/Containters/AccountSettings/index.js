@@ -22,6 +22,7 @@ class AccountSettings extends React.Component {
 
     render() {
         const { modalOpen1, modalOpen2 } = this.state
+        const username = JSON.parse(localStorage.getItem('user')).username
         return (
             <React.Fragment>
                 <Styled.Wrapper>
@@ -31,7 +32,7 @@ class AccountSettings extends React.Component {
                         </Styled.Photo>
                         <Styled.UsernameBox>
                             <Styled.UserIcon size="55" />
-                            <Styled.Input value="Username" disabled/>
+                            <Styled.Input value={username} disabled />
                             <Styled.EditIcon size="40" />
                         </Styled.UsernameBox>
                     </Styled.RightContainer>

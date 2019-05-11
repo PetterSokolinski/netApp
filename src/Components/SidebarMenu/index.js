@@ -2,7 +2,7 @@ import React from 'react'
 import { slide as Sidebar } from 'react-burger-menu'
 import * as Styled from './styled.js'
 import { Link, NavLink } from 'react-router-dom'
-
+import { logout } from '../../Services/authenticationService'
 
 class SidebarMenu extends React.Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class SidebarMenu extends React.Component {
                 <span>Account Settings</span>
               </NavLink >
             </Styled.MenuItem>
-            <Styled.LogoutItem>
+            <Styled.LogoutItem onClick={logout}>
               <Link to="/">
                 <Styled.LogOutIcon />
                 <span>Logout</span>

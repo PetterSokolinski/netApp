@@ -65,16 +65,18 @@ class GridColumn extends React.Component {
 
     render() {
         const { object } = this.props
+        console.log(object, "object")
         const { modalDeleteOpen, modalEditOpen } = this.state
+        /**/
         return (
             <React.Fragment>
                 {(object !== undefined) && 
                     <React.Fragment>
                         <Modal open={modalDeleteOpen} onClose={this.handleToggleDeleteModal} basic size='tiny'>
-                            <Header icon='archive' content={object.taskName} />
+                            <Header icon='archive' content={object.title} />
                             <Modal.Content>
                             <p>
-                                {"Do you want delete the " + object.taskName + "?"}
+                                {"Do you want delete the " + object.title + "?"}
                             </p>
                             </Modal.Content>
                             <Modal.Actions>
@@ -88,7 +90,7 @@ class GridColumn extends React.Component {
                         </Modal>
                         <Modal open={modalEditOpen} onClose={this.handleToggleEditModal} centered={false} size="small"> 
                             <Modal.Header style={Styled.HeaderModalStyles}>
-                                {"Edit " + object.taskName}
+                                {"Edit " + object.title}
                             </Modal.Header>
                             <Modal.Content>
                                 <Styled.Wrapper>
@@ -105,11 +107,11 @@ class GridColumn extends React.Component {
                         </Modal>
                         <Grid.Column width={8}>
                             <Styled.ContentWrapper>
-                                    <Styled.TaskName>{object.taskName}</Styled.TaskName>
-                                <Styled.ProjectName>{object.projectName}</Styled.ProjectName>
+                                    <Styled.TaskName>{object.title}</Styled.TaskName>
+                                <Styled.ProjectName>{object.projectID}</Styled.ProjectName>
                                 <Styled.TagsWrapper>
                                 {object.tags.map(tag => (
-                                    <Styled.TagContainer>{tag}</Styled.TagContainer>
+                                    <Styled.TagContainer>{tag.tagName}</Styled.TagContainer>
                                 ))}
                                 </Styled.TagsWrapper>
                                 <Styled.IconsWrapper>
