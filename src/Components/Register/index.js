@@ -59,7 +59,6 @@ class Register extends React.Component {
             this.errorMessage.status = false 
         }
         else {
-            console.log("wchodze")
             const data = {
                 username, email, password
               }

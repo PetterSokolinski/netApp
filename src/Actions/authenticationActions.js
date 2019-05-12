@@ -27,3 +27,31 @@ export const resetUsername = (user) => {
     user
   }
 }
+
+export const getProjects = () => {
+  return {
+    type: types.GET_PROJECTS,
+  }
+}
+
+
+export const addTask = (task) => {
+  return {
+    type: types.ADD_TASK,
+    task
+  }
+}
+
+export const deleteTask = (taskId) => {
+  return {
+    type: types.DELETE_TASK,
+    taskId
+  }
+}
+
+export const editTask = (task) => {
+  return {
+    type: types.EDIT_TASK,
+    task
+  }
+}

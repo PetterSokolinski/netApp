@@ -1,5 +1,5 @@
 import { put, call } from 'redux-saga/effects';
-import { registerUserService, loginUserService, emailPasswordUsernameService } from '../Services/authenticationService';
+import { registerUserService, loginUserService, emailPasswordUsernameService, getProjects, addTaskService, deleteTaskService, editTaskService } from '../Services/authenticationService';
 
 import * as types from '../Actions'
 
@@ -45,5 +45,49 @@ export function* usernameSaga(payload) {
     ];
   } catch(error) {
     yield put({ type: types.USERNAME_RESET_ERROR, error })
+  }
+}
+
+export function* getProjectsSaga() {
+  try {
+    const response = yield call(getProjects);
+    yield [
+      put({ type: types.USERNAME_RESET_SUCCESS, response })
+    ];
+  } catch(error) {
+    yield put({ type: types.USERNAME_RESET_ERROR, error })
+  }
+}
+
+export function* addTaskSaga(payload) {
+  try {
+    const response = yield call(addTaskService, payload);
+    yield [
+      put({ type: types.ADD_TASK_SUCCESS, response })
+    ];
+  } catch(error) {
+    yield put({ type: types.ADD_TASK_ERROR, error })
+  }
+}
+
+export function* deleteTaskSaga(payload) {
+  try {
+    const response = yield call(deleteTaskService, payload);
+    yield [
+      put({ type: types.DELETE_TASK_SUCCESS, response })
+    ];
+  } catch(error) {
+    yield put({ type: types.DELETE_TASK_ERROR, error })
+  }
+}
+
+export function* editTaskSaga(payload) {
+  try {
+    const response = yield call(editTaskService, payload);
+    yield [
+      put({ type: types.EDIT_TASK_SUCCESS, response })
+    ];
+  } catch(error) {
+    yield put({ type: types.EDIT_TASK_ERROR, error })
   }
 }

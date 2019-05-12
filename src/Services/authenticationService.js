@@ -76,6 +76,73 @@ export const registerUserService = (request) => {
   };
 
 
+  export const getProjects = () => {
+    const PROJECTS_API_ENDPOINT = "https://localhost:44367/api/projects";
+    const parameters = {
+        method: 'GET',
+        headers: authHeader()
+    }
+
+    return fetch(PROJECTS_API_ENDPOINT, parameters).then(handleResponse).then(data => {
+      localStorage.setItem('projects', JSON.stringify(data));
+    });
+}
+export const deleteTaskService = (taskId) => {
+  const TASKS_API_ENDPOINT = "https://localhost:44367/api/tasks";
+  const parameters = {
+      method: 'DELETE',
+      headers: authHeader()
+  }
+
+  return fetch(`${TASKS_API_ENDPOINT}/${taskId.taskId}`, parameters).then(handleResponse)
+}
+
+
+export const addTaskService = (request) => {
+  const TASKS_API_ENDPOINT = "https://localhost:44367/api/tasks"
+  const userID = JSON.parse(localStorage.getItem('user')).userId
+  const data = {
+    userID,
+    ...request.task
+  }
+  const parameters = {
+    method: 'POST',
+    headers: authHeader(),
+    body: JSON.stringify(data)
+  };
+
+  return fetch(TASKS_API_ENDPOINT, parameters)
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+      return json;
+    });
+};
+
+
+export const editTaskService = (request) => {
+  const TASKS_API_ENDPOINT = "https://localhost:44367/api/tasks";
+  const userId = JSON.parse(localStorage.getItem('user')).userId
+  const data = {
+    userId,
+    ...request.task
+  }
+  console.log("data", data)
+  const parameters = {
+    method: 'PUT',
+    headers: authHeader(),
+    body: JSON.stringify(data)
+  };
+  return fetch(`${TASKS_API_ENDPOINT}/${request.task.taskId}`, parameters)
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+      return json;
+    });
+};
+
   function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
