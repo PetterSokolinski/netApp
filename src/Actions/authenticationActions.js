@@ -13,3 +13,17 @@ export const loginUserAction = (user) => {
     user
   }
 };
+
+export const resetEmailPasswordAction = (user) => {
+  return {
+    type: types.EMAIL_PASSWORD_RESET,
+    user
+  }
+}
+
+export const resetUsername = (user) => {
+  return {
+    type: types.USERNAME_RESET,
+    user
+  }
+}

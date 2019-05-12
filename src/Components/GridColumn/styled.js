@@ -5,6 +5,7 @@ import { DeleteForever } from 'styled-icons/material/DeleteForever'
 export const ContentWrapper = styled.div`
     position: relative;
     width: 100%;
+    min-height: 300px;
     height: auto;
 `
 
@@ -44,11 +45,12 @@ export const TagsWrapper = styled.div`
     flex-wrap: wrap;
 `
 export const IconsWrapper = styled.div`
+    top: 10px;
     display: flex;
-    width: 50%;
-    float: right;
-    right: 5vw;
-    bottom: 2vw;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     position: relative;
 `
 
@@ -147,4 +149,25 @@ export const DropdownContainer = styled.div`
     position: relative;
     left: 8vw;
     top: 1vw;
+`
+
+export const DescriptionWrapper = styled.div`
+    position: relative;
+    width: 100%;
+    height: auto;
+    text-align: center;
+
+`
+
+export const AreaText = styled.textarea`
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    top: 10px;
+`
+
+export const AreaLabel = styled.label`
+    padding-top: 20px;
+    color: #03a9f4;
+    font-size: 18px;
+    font-family: sans-serif;
 `

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import GridColumn from '../GridColumn'
 
 const Container = styled.div`
-    padding: 75px;
+    padding: 50px 80px;
 `
 
 

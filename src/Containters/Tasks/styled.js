@@ -84,3 +84,16 @@ export const DropdownContainer = styled.div`
     left: 8vw;
     top: 1vw;
 `
+
+export const AreaText = styled.textarea`
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    top: 10px;
+`
+
+export const AreaLabel = styled.label`
+    padding-top: 20px;
+    color: #03a9f4;
+    font-size: 18px;
+    font-family: sans-serif;
+`

@@ -25,9 +25,6 @@ class Linker extends React.Component {
     }
 
     render() {
-        if(!localStorage.getItem('user')) {
-            this.props.history.push("/")
-          }
         return (
             <SidebarMenu>
                 {this.handleComponentRender()}

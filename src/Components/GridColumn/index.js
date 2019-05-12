@@ -100,6 +100,9 @@ class GridColumn extends React.Component {
                                     </Styled.DropdownContainer>
                                 </Styled.Wrapper>
                                 <Dropdown placeholder='Tags' fluid multiple selection options={options} />
+                                <br />
+                    <Styled.AreaLabel for="description"> Description: </Styled.AreaLabel>
+                    <Styled.AreaText name="description" cols="90" rows="5" placeholder="Short description of the task..."></Styled.AreaText>
                             </Modal.Content>
                             <Modal.Actions>
                                 <SemanticButton positive onClick={this.handleToggleEditModal}>Submit</SemanticButton>
@@ -114,6 +117,9 @@ class GridColumn extends React.Component {
                                     <Styled.TagContainer>{tag.tagName}</Styled.TagContainer>
                                 ))}
                                 </Styled.TagsWrapper>
+                                <Styled.DescriptionWrapper>
+                                {object.description}
+                                </Styled.DescriptionWrapper>
                                 <Styled.IconsWrapper>
                                     <Styled.EditIcon size="40" onClick={this.handleToggleEditModal} />
                                     <Styled.DeleteIcon size="40" onClick={this.handleToggleDeleteModal} />

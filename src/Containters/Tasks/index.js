@@ -2,6 +2,7 @@ import React from 'react'
 import * as Styled from './styled.js'
 import { Modal, Dropdown, Button as SemanticButton } from 'semantic-ui-react'
 import TaskView from '../../Components/TaskView'
+import { withRouter } from "react-router-dom"
 
 
 const options = [
@@ -96,6 +97,9 @@ class Tasks extends React.Component {
                         </Styled.DropdownContainer>
                     </Styled.Wrapper>
                     <Dropdown placeholder='Tags' fluid multiple selection options={options} />
+                    <br />
+                    <Styled.AreaLabel for="description"> Description: </Styled.AreaLabel>
+                    <Styled.AreaText name="description" cols="90" rows="5" placeholder="Short description of the task..."></Styled.AreaText>
                 </Modal.Content>
                 <Modal.Actions>
                     <SemanticButton positive onClick={this.handleToggleModal}>Submit</SemanticButton>
@@ -115,5 +119,4 @@ const InputComponent = (props) => (
     </Styled.Container>
 )
 
-
-export default Tasks
+export default withRouter(Tasks)
