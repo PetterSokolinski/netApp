@@ -2,6 +2,9 @@ import React from 'react'
 import WeekCalendar from '../../Components/WeekScheduler'
 import 'react-week-calendar/dist/style.css'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { editTask, getMe } from '../../Actions/authenticationActions'
+import moment from 'moment';
 
 const Container = styled.div`
     position: absolute;
@@ -13,13 +16,14 @@ const Container = styled.div`
 
 class Overview extends React.Component {
     constructor(props) {
-        super(props)
+        super(props) 
     this.state = {
       lastUid: 4,
       selectedIntervals: []
     }
   }
 
+  
 
   handleEventRemove = (event) => {
     const {selectedIntervals} = this.state;
@@ -41,6 +45,22 @@ class Overview extends React.Component {
   }
 
   handleSelect = (newIntervals) => {
+    const title = newIntervals[0].value
+    const toStart = JSON.stringify(newIntervals[0].start)
+    const toFinish = JSON.stringify(newIntervals[0].end)
+    let taskId
+    let tasks = JSON.parse(localStorage.getItem('user')).tasks
+    for(let index = 0; index < tasks.length; index++) {
+        if(title === tasks[index].title) {
+          taskId = tasks[index].taskId
+        }
+    }
+    const data = {
+      title,
+      taskId,
+      toStart,
+      toFinish
+    }
     const {lastUid, selectedIntervals} = this.state;
     const intervals = newIntervals.map( (interval, index) => {
       return {
@@ -54,6 +74,57 @@ class Overview extends React.Component {
       lastUid: lastUid + newIntervals.length
     })
     
+    this.props.dispatch(editTask(data))
+    const user = JSON.parse(localStorage.getItem('user'))
+    for(let index = 0; index < user.tasks.length; index++) {
+      if(title === user.tasks[index].title) {
+        const oldTask = user.tasks[index]
+        const newTask = {
+          ...oldTask,
+          title: title,
+          toStart: toStart,
+          toFinish: toFinish
+        }
+        user.tasks[index] = newTask
+      }
+    }
+    localStorage.setItem('user', JSON.stringify(user))
+    window.location.reload(true)
+  }
+
+  hasDuplicates = (array, string) => {
+    for(let index = 0; index < array.lenght; index++) {
+      if(array[index].value === string) {
+        return true
+      }
+    }
+    return false
+  }
+
+  componentDidMount() {
+    const { selectedIntervals } = this.state
+      const tasks = JSON.parse(localStorage.getItem('user')).tasks
+      for(let index = 0; index < tasks.length; index++) {
+        if(tasks[index].toStart !== undefined && tasks[index].toStart !== null
+          && tasks[index].toFinish !== undefined && tasks[index].toFinish !== null) {
+          const value = tasks[index].title
+          let startString = JSON.parse(tasks[index].toStart)
+          startString = startString.slice(0,10) + " " + startString.slice(11,23)
+          const start = moment(startString).add(2, 'hours')
+          let endString = JSON.parse(tasks[index].toFinish)
+          endString = endString.slice(0,10) + " " + endString.slice(11,23)
+          const end = moment(endString).add(2, 'hours')
+          const interval = {
+            value,
+            start,
+            end
+          }
+          if(!this.hasDuplicates(selectedIntervals, tasks[index].title)) {
+            selectedIntervals.push(interval)
+          }
+          
+      }
+    }
   }
 
 
@@ -70,4 +141,6 @@ class Overview extends React.Component {
     }
 }
 
-export default  Overview
+
+const mapStateToProps = (response) => ({response})
+export default connect(mapStateToProps)(Overview)

@@ -27,18 +27,6 @@ const tagsOptions = [
     { key: 'User Experience', text: 'User Experience', value: 'User Experience' },
   ]
 
-/*const objects = [
-    { taskName: 'angular1', projectName: 'Angular', tags: tagsTab },
-    { taskName: 'angular2', projectName: 'Angular', tags: tagsTab },
-    { taskName: 'angular3', projectName: 'Angular', tags: tagsTab },
-    { taskName: 'angular4', projectName: 'Angular', tags: tagsTab },
-    { taskName: 'angular5', projectName: 'Angular', tags: tagsTab },
-    { taskName: 'angular6', projectName: 'Angular', tags: tagsTab },
-    { taskName: 'angular7', projectName: 'Angular', tags: tagsTab },
-]*/
-
-
-
 class Tasks extends React.Component {
     constructor(props) {
         super(props)
@@ -82,8 +70,9 @@ class Tasks extends React.Component {
         }
         this.props.dispatch(addTask(data))
         const user = JSON.parse(localStorage.getItem('user'))
+        const finished = false
         const dataToDisplay = {
-            projectName, title, tags, description
+            projectID, projectName, title, tags, description, finished
         }
         user.tasks.push(dataToDisplay)
         localStorage.setItem('user', JSON.stringify(user));
@@ -155,7 +144,7 @@ class Tasks extends React.Component {
                     <Dropdown placeholder='Tags' fluid multiple selection options={tagsOptions} onChange={this.handleTagsChange} />
                     <br />
                     <Styled.AreaLabel for="description"> Description: </Styled.AreaLabel>
-                    <Styled.AreaText value={this.state.description} onChange={this.handleChange} name="description" cols="90" rows="5" placeholder="Short description of the task..."></Styled.AreaText>
+                    <Styled.AreaText value={this.state.description} onChange={this.handleChange} name="description" rows="5" placeholder="Short description of the task..."></Styled.AreaText>
                 </Modal.Content>
                 <Modal.Actions>
                     <SemanticButton positive onClick={this.handleAddTask}>Submit</SemanticButton>

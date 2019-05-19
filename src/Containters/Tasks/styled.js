@@ -86,6 +86,8 @@ export const DropdownContainer = styled.div`
 `
 
 export const AreaText = styled.textarea`
+    position: relative;
+    width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 3px;
     top: 10px;

@@ -2,11 +2,12 @@ import styled from 'styled-components'
 import { Edit } from 'styled-icons/boxicons-solid/Edit'
 import { DeleteForever } from 'styled-icons/material/DeleteForever'
 
+
 export const Container = styled.div`
     cursor: pointer;
     width: 60%;
     height: 50px;
-    border: 5px solid #03a9f4;
+    border: ${props => props.running ? "3px solid green" : "3px solid red"};
     border-radius: 15px;
     position: relative;
     left: 50%;

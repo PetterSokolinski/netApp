@@ -25,6 +25,7 @@ class AccountSettings extends React.Component {
     }
     handleToggleModal3 = () => {
         this.setState({ modalOpen3: !this.state.modalOpen3 })
+        this.setState({ username: "" })
     }
 
     handleChange = (event) => {

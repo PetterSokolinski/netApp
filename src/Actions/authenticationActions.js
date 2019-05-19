@@ -55,3 +55,39 @@ export const editTask = (task) => {
     task
   }
 }
+
+export const getMe = () => {
+  return {
+    type: types.GET_ME
+  }
+}
+
+
+
+export const addProject = (project) => {
+  return {
+    type: types.ADD_PROJECT,
+    project
+  }
+}
+
+export const deleteProject = (projectId) => {
+  return {
+    type: types.DELETE_PROJECT,
+    projectId
+  }
+}
+
+export const editProject = (project) => {
+  return {
+    type: types.EDIT_PROJECT,
+    project
+  }
+}
+
+export const assignProject = (projectId) => {
+  return {
+    type: types.ASSIGN_PROJECT,
+    projectId
+  }
+}

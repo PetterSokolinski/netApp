@@ -2,12 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown } from 'semantic-ui-react'
 
-const options = [
-  { key: 1, text: 'Choice 1', value: "Choice 1" },
-  { key: 2, text: 'Choice 2', value: "Choice 2" },
-  { key: 3, text: 'Choice 3', value: "Choice 3" },
-]
-
 
 const propTypes = {
   start: PropTypes.object.isRequired,
@@ -59,6 +53,19 @@ class Modal extends React.Component {
 
   render() {
     const { value } = this.state;
+    const tasks = JSON.parse(localStorage.getItem('user')).tasks
+    const taskOptions = []
+    for(let index = 0; index < tasks.length; index++) {
+      const key = index + 1
+      const text = tasks[index].title
+      const value = tasks[index].title
+      const taskObject = {
+        key,
+        text,
+        value
+      }
+      taskOptions.push(taskObject)
+    }
     return (
       <div className="customModal">
         <div className="customModal__text">{this.renderText()}</div>
@@ -68,7 +75,7 @@ class Modal extends React.Component {
             className="customModal__input"
             fluid
             selection
-            options={options}
+            options={taskOptions}
             value={value}
             onChange={this.handleChange}
           />

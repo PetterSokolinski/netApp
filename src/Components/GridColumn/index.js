@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Modal, Icon, Dropdown, Button as SemanticButton, Header } from 'semantic-ui-react'
+import { Button, Grid, Modal, Icon, Dropdown, Button as SemanticButton, Header } from 'semantic-ui-react'
 import * as Styled from './styled.js'
 import { connect } from 'react-redux'
 
@@ -31,21 +31,18 @@ class GridColumn extends React.Component {
         let tagsFromApiToString = []
         if(this.props.object !== undefined) {
             for(let index = 0; index < this.props.object.tags.length; index++) {
-                console.log(this.props.object.tags[index])
-                console.log(this.props.object.tags[index].tagName)
                 tagsFromApiToString.push(this.props.object.tags[index].tagName)
             }
         }
-        console.log(tagsFromApiToString)
         this.state = {
             modalDeleteOpen: false,
             modalEditOpen: false,
             title: this.props.object !== undefined ? this.props.object.title : "",
             projectName: this.props.object !== undefined ? this.props.object.projectName : "",
             stringTags: this.props.object !== undefined ? tagsFromApiToString : [],
-            description: this.props.object !== undefined ? this.props.object.description : ""
+            description: this.props.object !== undefined ? this.props.object.description : "",
+            finished: this.props.object !== undefined ? this.props.object.finished : false
         }
-        console.log(this.state)
     }
     handleToggleDeleteModal = () => {
         this.setState({ modalDeleteOpen: !this.state.modalDeleteOpen })
@@ -64,7 +61,7 @@ class GridColumn extends React.Component {
                 user.tasks.splice(index, 1)
             }
         }
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('user', JSON.stringify(user))
         window.location.reload(true)
         this.handleToggleDeleteModal()
 
@@ -74,15 +71,15 @@ class GridColumn extends React.Component {
         if (this.state.stringTags.length > value.length) { // an item has been removed
             const difference = this.state.stringTags.filter(
                 x => !value.includes(x),
-            );
-            console.log(difference); // this is the item
-            return false;
+            )
+            console.log(difference) // this is the item
+            return false
         }
-        return this.setState({ stringTags: value });
+        return this.setState({ stringTags: value })
       }
 
       handleProjectChange =  (e, { value }) => {
-        this.setState({ projectName: value });
+        this.setState({ projectName: value })
       }
       handleChange = (event) => {
         const { name, value } = event.target
@@ -90,7 +87,7 @@ class GridColumn extends React.Component {
       }
       handleEditTask = () => {
         const projects = JSON.parse(localStorage.getItem('projects'))
-        const { title, stringTags, projectName, description } = this.state
+        const { title, stringTags, projectName, description, finished } = this.state
         let projectID
         for(let index = 0; index < projects.length; index++) {
             if(this.props.object.projectName === projects[index].title) {
@@ -104,9 +101,8 @@ class GridColumn extends React.Component {
         }
         const taskId = this.props.object.taskId
         const data = {
-            projectID, title, tags, description, taskId
+            projectID, title, tags, description, taskId, finished
         }
-        console.log(data)
         this.props.dispatch(editTask(data))
         const user = JSON.parse(localStorage.getItem('user'))
         const dataToDisplay = {
@@ -117,15 +113,43 @@ class GridColumn extends React.Component {
                 user.tasks[index] = dataToDisplay
             }
         }
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('user', JSON.stringify(user))
         this.handleToggleEditModal()
         window.location.reload(true)
+      }
+
+      handleFinishing = () => {
+        const taskId = this.props.object.taskId
+        const title = this.props.object.title
+        const finished = !this.state.finished
+        const data = {
+            title, taskId, finished    
+        }
+        this.props.dispatch(editTask(data))
+        const user = JSON.parse(localStorage.getItem('user'))
+        for(let index = 0; index < user.tasks.length; index++) {
+            if(user.tasks[index].taskId === taskId) {
+                let taskData = user.tasks[index]
+                taskData = {
+                    ...taskData,
+                    finished
+                }
+                user.tasks[index] = taskData
+            }
+        }
+        localStorage.setItem('user', JSON.stringify(user))
+        window.location.reload(true)
+        this.setState({finished: !this.state.finished})
       }
 
 
     render() {
         const { object, projectOptions } = this.props
         const { modalDeleteOpen, modalEditOpen } = this.state
+        const tasks = JSON.parse(localStorage.getItem('user')).tasks
+        const isFinished = object === undefined ? "" : object.finished ? "Set unfinished" : "Set finished"
+        const positive = object === undefined ? false : object.finished ?  false : true
+        const negative = object === undefined ? false : object.finished ? true : false
         return (
             <React.Fragment>
                 {(object !== undefined) && 
@@ -160,7 +184,7 @@ class GridColumn extends React.Component {
                                 <Dropdown placeholder='Tags' fluid multiple selection options={tagsOptions} onChange={this.handleTagsChange} defaultValue={this.state.stringTags} />
                                 <br />
                                 <Styled.AreaLabel for="description"> Description: </Styled.AreaLabel>
-                                <Styled.AreaText value={this.state.description} onChange={this.handleChange} name="description" cols="90" rows="5" placeholder="Short description of the task..."></Styled.AreaText>
+                                <Styled.AreaText value={this.state.description} onChange={this.handleChange} name="description" rows="5" placeholder="Short description of the task..."></Styled.AreaText>
                             </Modal.Content>
                             <Modal.Actions>
                                 <SemanticButton positive onClick={this.handleEditTask}>Submit</SemanticButton>
@@ -168,7 +192,7 @@ class GridColumn extends React.Component {
                         </Modal>
                         <Grid.Column width={8}>
                             <Styled.ContentWrapper>
-                                    <Styled.TaskName>{object.title}</Styled.TaskName>
+                                    <Styled.TaskName finished={object.finished}>{object.title}</Styled.TaskName>
                                 <Styled.ProjectName>{object.projectName}</Styled.ProjectName>
                                 <Styled.TagsWrapper>
                                 {object.tags.map(tag => (
@@ -179,6 +203,7 @@ class GridColumn extends React.Component {
                                 {object.description}
                                 </Styled.DescriptionWrapper>
                                 <Styled.IconsWrapper>
+                                    <Button positive={positive} size="tiny" negative={negative} onClick={this.handleFinishing}>{isFinished}</Button>
                                     <Styled.EditIcon size="40" onClick={this.handleToggleEditModal} />
                                     <Styled.DeleteIcon size="40" onClick={this.handleToggleDeleteModal} />
                                 </Styled.IconsWrapper>

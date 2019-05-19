@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import moment from 'moment';
+import React from 'react'
+import PropTypes from 'prop-types'
+import moment from 'moment'
 
-import DayColumn from './DayColumn';
-import { getDayIntervals } from './Utils';
+import DayColumn from './DayColumn'
+import { getDayIntervals } from './Utils'
 
 const propTypes = {
   firstDay: PropTypes.object.isRequired,
@@ -21,7 +21,7 @@ class CalendarBody extends React.Component {
     return nextProps.scaleUnit !== this.props.scaleUnit
       || nextProps.cellHeight !== this.props.cellHeight
       || nextProps.numberOfDays !== this.props.numberOfDays
-      || !nextProps.firstDay.isSame(this.props.firstDay, 'day');
+      || !nextProps.firstDay.isSame(this.props.firstDay, 'day')
   }
 
   render() {
@@ -32,12 +32,12 @@ class CalendarBody extends React.Component {
       scaleIntervals,
       cellHeight,
       dayCellComponent,
-    } = this.props;
+    } = this.props
 
-    const weekdayColumns = [];
+    const weekdayColumns = []
     for (let i = 0; i < numberOfDays; i += 1) {
-      const day = moment(firstDay).add(i, 'd');
-      const intervals = getDayIntervals(day, scaleIntervals);
+      const day = moment(firstDay).add(i, 'd')
+      const intervals = getDayIntervals(day, scaleIntervals)
       weekdayColumns.push(<DayColumn
         key={i}
         colPos={i}
@@ -47,7 +47,7 @@ class CalendarBody extends React.Component {
         dayIntervals={intervals}
         onSelectionStart={this.props.onSelectionStart}
         onCellMouseEnter={this.props.onCellMouseEnter}
-      />);
+      />)
     }
 
     return (
@@ -56,7 +56,7 @@ class CalendarBody extends React.Component {
           {weekdayColumns}
         </div>
       </div>
-    );
+    )
   }
 }
 

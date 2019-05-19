@@ -12,7 +12,7 @@ export const ContentWrapper = styled.div`
 export const TaskName = styled.h1`
     text-align: center;
     font-style: italic;
-    border-bottom: 1px solid grey;
+    border-bottom: ${props => props.finished ? "1px solid green" : "1px solid red"};
     width: 50%;
     left: 50%;
     transform: translateX(-50%);
@@ -49,8 +49,8 @@ export const IconsWrapper = styled.div`
     display: flex;
     width: 100%;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     position: relative;
 `
 
@@ -153,6 +153,8 @@ export const DropdownContainer = styled.div`
 
 export const DescriptionWrapper = styled.div`
     position: relative;
+    top: 10px;
+    font-size: 18px;
     width: 100%;
     height: auto;
     text-align: center;
@@ -160,6 +162,8 @@ export const DescriptionWrapper = styled.div`
 `
 
 export const AreaText = styled.textarea`
+    position: relative;
+    width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 3px;
     top: 10px;
