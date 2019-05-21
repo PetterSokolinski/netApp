@@ -17,7 +17,7 @@ class Projects extends React.Component {
             modalOpen: false,
             title: "",
             company: "",
-            viewAll: JSON.parse(localStorage.getItem('view')) !== null ? JSON.parse(localStorage.getItem('view')) : true
+            viewAll: true
         }
     }
     handleToggleModal = () => {
@@ -57,12 +57,10 @@ class Projects extends React.Component {
     }
 
     handleChangeViewToAll = () => {
-        localStorage.setItem("view", JSON.stringify(true))
         this.setState({ viewAll: true })
     }
 
     handleChangeViewToMine = () => {
-        localStorage.setItem("view", JSON.stringify(false))
         this.setState({ viewAll: false })
     }
 
@@ -73,7 +71,7 @@ class Projects extends React.Component {
         const userId = JSON.parse(localStorage.getItem('user')).userId
         let projects = []
         projects.push(<ChangeViewButton handleChangeViewToAll={this.handleChangeViewToAll} handleChangeViewToMine={this.handleChangeViewToMine} />)
-        if(JSON.parse(localStorage.getItem('view'))) {
+        if(this.state.viewAll) {
             for(let index = 0; index < projectsFromApi.length; index++) {
                     projects.push(<ProjectView object={projectsFromApi[index]} />)
             }
