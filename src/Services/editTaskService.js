@@ -11,8 +11,6 @@ export const editTaskService = (request) => {
       headers: authHeader(),
       body: JSON.stringify(data)
     }
-    console.log(data)
-    debugger
     return fetch(`${TASKS_API_ENDPOINT}/${request.task.taskId}`, parameters)
       .then(response => {
         return response.json()

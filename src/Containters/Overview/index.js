@@ -74,8 +74,6 @@ class Overview extends React.Component {
       selectedIntervals: selectedIntervals.concat(intervals),
       lastUid: lastUid + newIntervals.length
     })
-    console.log(data)
-    debugger
     this.props.dispatch(editTaskAction(data))
     const user = JSON.parse(localStorage.getItem('user'))
     for(let index = 0; index < user.tasks.length; index++) {

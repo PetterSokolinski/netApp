@@ -32,7 +32,7 @@ class Event extends React.PureComponent {
     } = this.props
 
     const tasks = JSON.parse(localStorage.getItem('user')).tasks
-    const projects = JSON.parse(localStorage.getItem('projects'))
+    const projects = JSON.parse(localStorage.getItem('projects')) ? JSON.parse(localStorage.getItem('projects')) : []
     let projectID
     let projectName
     for(let index = 0; index < tasks.length; ++index) {

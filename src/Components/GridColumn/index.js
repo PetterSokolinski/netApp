@@ -90,7 +90,6 @@ class GridColumn extends React.Component {
         const { title, stringTags, projectName, description, finished } = this.state
         let projectID
         for(let index = 0; index < projects.length; index++) {
-            debugger
             if(this.props.object.projectName === projects[index].title) {
                 projectID = projects[index].projectId
             }
