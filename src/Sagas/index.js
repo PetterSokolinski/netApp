@@ -1,6 +1,6 @@
-import { fork } from 'redux-saga/effects';
-import watchUserAuthentication from './watchers';
+import { fork } from 'redux-saga/effects'
+import watchActionsInApplication from './watcher'
 
 export default function* startForman() {
-  yield fork(watchUserAuthentication);
+  yield fork(watchActionsInApplication)
 }

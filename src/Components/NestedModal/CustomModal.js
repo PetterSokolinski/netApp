@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Icon, Modal } from 'semantic-ui-react'
 import * as Styled from './styled.js'
 import { connect } from 'react-redux'
-import { resetEmailPasswordAction } from '../../Actions/authenticationActions'
+import { resetEmailPasswordUsernameAction } from '../../Actions/index'
 
 
 class CustomModal extends Component {
@@ -30,7 +30,7 @@ class CustomModal extends Component {
     }
     if ((this.state.input === this.state.input2) && this.state.input !== "" && this.state.input2 !== "")
     {
-      this.props.dispatch(resetEmailPasswordAction(data))
+      this.props.dispatch(resetEmailPasswordUsernameAction(data))
       this.handleCloseBoth()
     }
     

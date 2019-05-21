@@ -1,14 +1,14 @@
-import * as types from '../Actions';
+import * as types from '../Actions/actions'
 
 export default function(state = [], action) {
-  const response = action.response;
+  const response = action.response
 
   switch(action.type) {
     case types.GET_PROJECTS_SUCCESS:
-      return { ...state, response };
+      return { ...state, response }
     case types.GET_PROJECTS_ERROR:
-      return { ...state, response };
+      return { ...state, response }
     default:
-      return state;
+      return state
   }
-};
+}

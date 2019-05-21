@@ -4,7 +4,7 @@ import { Modal, Dropdown, Button as SemanticButton } from 'semantic-ui-react'
 import TaskView from '../../Components/TaskView'
 import { withRouter } from "react-router-dom"
 import { connect } from 'react-redux'
-import { addTask, getProjects } from '../../Actions/authenticationActions'
+import { addTaskAction, getProjectsAction, getMeAction } from '../../Actions/index'
 
 const tagsOptions = [
     { key: 'Angular', text: 'Angular', value: 'Angular' },
@@ -48,7 +48,7 @@ class Tasks extends React.Component {
       }
 
       componentWillMount() {
-        this.props.dispatch(getProjects())
+        this.props.dispatch(getProjectsAction())
       }
 
       handleAddTask = () => {
@@ -68,31 +68,31 @@ class Tasks extends React.Component {
         const data = {
             projectID, title, tags, description
         }
-        this.props.dispatch(addTask(data))
+        this.props.dispatch(addTaskAction(data))
         const user = JSON.parse(localStorage.getItem('user'))
         const finished = false
         const dataToDisplay = {
             projectID, projectName, title, tags, description, finished
         }
         user.tasks.push(dataToDisplay)
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('user', JSON.stringify(user))
         this.handleToggleModal()
         this.setState({title: "", description: ""})
         window.location.reload(true)
       }
       handleTagsChange = (e, { value }) => {
-        if (this.state.stringTags.length > value.length) { // an item has been removed
+        if (this.state.stringTags.length > value.length) {
             const difference = this.state.stringTags.filter(
                 x => !value.includes(x),
-            );
-            console.log(difference); // this is the item
-            return false;
+            )
+            console.log(difference)
+            return false
         }
-        return this.setState({ stringTags: value });
+        return this.setState({ stringTags: value })
       }
 
       handleProjectChange =  (e, { value }) => {
-        this.setState({ projectName: value });
+        this.setState({ projectName: value })
       }
 
 
@@ -123,6 +123,7 @@ class Tasks extends React.Component {
                 }
             }
         }
+        
         let tasks = []
         for(let index = 0; index < objects.length; index = index + 2) {
             tasks.push(<TaskView projectOptions={projectOptions} object1={objects[index]} object2={objects[index + 1]} />)

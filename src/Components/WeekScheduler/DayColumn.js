@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const propTypes = {
   colPos: PropTypes.number.isRequired,
@@ -8,24 +8,24 @@ const propTypes = {
   dayCellComponent: PropTypes.func.isRequired,
   onSelectionStart: PropTypes.func.isRequired,
   onCellMouseEnter: PropTypes.func.isRequired,
-};
+}
 
 class DayColumn extends React.Component {
   handleMouseEnter = (col, row) => {
     return () => {
-      this.props.onCellMouseEnter(col, row);
-    };
+      this.props.onCellMouseEnter(col, row)
+    }
   }
 
   handleStartSelection = (col, row) => {
     return () => {
-      this.props.onSelectionStart(col, row);
-    };
+      this.props.onSelectionStart(col, row)
+    }
   }
 
   render() {
-    const { cellHeight, colPos, dayIntervals } = this.props;
-    const DayCell = this.props.dayCellComponent;
+    const { cellHeight, colPos, dayIntervals } = this.props
+    const DayCell = this.props.dayCellComponent
 
     const dayCells = dayIntervals.map((interval, rowPos) => (
       <div
@@ -43,13 +43,13 @@ class DayColumn extends React.Component {
           startSelection={this.handleStartSelection(colPos, rowPos)}
         />
       </div>
-    ));
+    ))
 
     return (
       <div className="calendarBody__column" data-colpos={colPos}>{dayCells}</div>
-    );
+    )
   }
 }
 
-DayColumn.propTypes = propTypes;
-export default DayColumn;
+DayColumn.propTypes = propTypes
+export default DayColumn

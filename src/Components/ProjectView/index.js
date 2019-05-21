@@ -3,7 +3,7 @@ import { Button, Grid, Modal, Icon, Button as SemanticButton, Header } from 'sem
 import * as Styled from './styled.js'
 import { connect } from 'react-redux'
 
-import { deleteProject, editProject, assignProject, getMe } from '../../Actions/authenticationActions'
+import { deleteProjectAction, editProjectAction, assignProjectAction } from '../../Actions/index'
 
 
 class GridRow extends React.Component {
@@ -31,7 +31,7 @@ class GridRow extends React.Component {
 
     handleDeleteProject = () => {
         const projectId = this.props.object.projectId
-        this.props.dispatch(deleteProject(projectId))
+        this.props.dispatch(deleteProjectAction(projectId))
         const projects = JSON.parse(localStorage.getItem('projects'))
         const user = JSON.parse(localStorage.getItem('user'))
         for(let index = 0; index < projects.length; index++) {
@@ -56,7 +56,7 @@ class GridRow extends React.Component {
         const data = {
             projectId, title, company, running
         }
-        this.props.dispatch(editProject(data))
+        this.props.dispatch(editProjectAction(data))
         const projects = JSON.parse(localStorage.getItem('projects'))
         for(let index = 0; index < projects.length; index++) {
             if(projects[index].projectId === projectId) {
@@ -80,8 +80,7 @@ class GridRow extends React.Component {
         const data = {
             title, projectId, running    
         }
-        debugger
-        this.props.dispatch(editProject(data))
+        this.props.dispatch(editProjectAction(data))
         const projects = JSON.parse(localStorage.getItem('projects'))
         for(let index = 0; index < projects.length; index++) {
             if(projects[index].projectId === projectId) {
@@ -100,11 +99,7 @@ class GridRow extends React.Component {
 
     handleAssign = () => {
         const projectId = this.props.object.projectId
-        
-        if(projectId === undefined) {
-            debugger
-        }
-        this.props.dispatch(assignProject(projectId))
+        this.props.dispatch(assignProjectAction(projectId))
         const user = JSON.parse(localStorage.getItem('user'))
         const userId = user.userId
         const projects = JSON.parse(localStorage.getItem('projects'))
@@ -137,6 +132,7 @@ class GridRow extends React.Component {
                 disabled = true
             }
         }
+        //console.log(object)
         return (
             <React.Fragment>
                 <Grid.Row>

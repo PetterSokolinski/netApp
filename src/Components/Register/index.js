@@ -2,7 +2,7 @@ import React from 'react'
 import * as Styled from './styled.js'
 import { Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { registerUserAction } from '../../Actions/authenticationActions'
+import { registerUserAction } from '../../Actions/index'
 import { withRouter } from "react-router-dom"
 
 class Register extends React.Component {

@@ -1,19 +1,29 @@
-import { combineReducers } from 'redux';
-import register from './registerReducer';
-import login from './loginReducer';
-import emailPassword from './emailPasswordReducer'
-import username from './usernameReducer'
-import getProjects from './getProjectsReducer'
-import addTask from './addTaskReducer'
-import deleteTask from './deleteTaskReducer'
-import editTask from './editTaskReducer'
-import addProject from './addProjectReducer'
-import getMe from './getMeReducer'
-import deleteProject from './deleteProjectReducer'
-import editProject from './editProjectReducer'
-import assignProject from './assignProjectReducer'
+import { combineReducers } from 'redux'
+import registerUserReducer from './registerUserReducer'
+import loginUserReducer from './loginUserReducer'
+import resetEmailPasswordUsernameAction from './resetEmailPasswordUsernameAction'
+import getProjectsReducer from './getProjectsReducer'
+import addTaskReducer from './addTaskReducer'
+import deleteTaskReducer from './deleteTaskReducer'
+import editTaskReducer from './editTaskReducer'
+import addProjectReducer from './addProjectReducer'
+import deleteProjectReducer from './deleteProjectReducer'
+import editProjectReducer from './editProjectReducer'
+import assignProjectReducer from './assignProjectReducer'
+import getMeReducer from './getMeReducer'
 const rootReducer = combineReducers({
-  register, login, emailPassword, username, getProjects, addTask, deleteTask, editTask, addProject, getMe, deleteProject, editProject, assignProject
-});
+  registerUserReducer,
+  loginUserReducer, 
+  resetEmailPasswordUsernameAction,
+  getProjectsReducer, 
+  addTaskReducer, 
+  deleteTaskReducer, 
+  editTaskReducer, 
+  addProjectReducer, 
+  deleteProjectReducer, 
+  editProjectReducer, 
+  assignProjectReducer,
+  getMeReducer
+})
 
-export default rootReducer;
+export default rootReducer

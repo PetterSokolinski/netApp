@@ -1,3 +1,3 @@
-import WeekCalendar from './WeekCalendar';
+import WeekCalendar from './WeekCalendar'
 
-export default WeekCalendar;
+export default WeekCalendar

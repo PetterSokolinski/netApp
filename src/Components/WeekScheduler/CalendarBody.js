@@ -14,7 +14,7 @@ const propTypes = {
   dayCellComponent: PropTypes.func.isRequired,
   onSelectionStart: PropTypes.func.isRequired,
   onCellMouseEnter: PropTypes.func.isRequired,
-};
+}
 
 class CalendarBody extends React.Component {
   shouldComponentUpdate(nextProps) {
@@ -60,6 +60,6 @@ class CalendarBody extends React.Component {
   }
 }
 
-CalendarBody.propTypes = propTypes;
+CalendarBody.propTypes = propTypes
 
-export default CalendarBody;
+export default CalendarBody

@@ -1,54 +1,26 @@
-export const REGISTER_USER = 'REGISTER_USER' 
-export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS' 
-export const REGISTER_USER_ERROR = 'REGISTER_USER_ERROR' 
+import { addProjectAction } from './addProjectAction'
+import { addTaskAction } from './addTaskAction'
+import { assignProjectAction } from './assignProjectAction'
+import { deleteProjectAction } from './deleteProjectAction'
+import { deleteTaskAction } from './deleteTaskAction'
+import { editProjectAction } from './editProjectAction'
+import { editTaskAction } from './editTaskAction'
+import { getProjectsAction } from './getProjectsAction'
+import { loginUserAction } from './loginUserAction'
+import { registerUserAction } from './registerUserAction'
+import { resetEmailPasswordUsernameAction } from './resetEmailPasswordUsernameAction'
+import { getMeAction } from './getMeAction'
 
-export const LOGIN_USER = 'LOGIN_USER'
-export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
-export const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR'
-
-export const EMAIL_PASSWORD_RESET = 'EMAIL_PASSWORD_RESET'
-export const EMAIL_PASSWORD_RESET_SUCCESS = 'EMAIL_PASSWORD_RESER_SUCCESS'
-export const EMAIL_PASSWORD_RESET_ERROR = 'EMAIL_PASSWORD_RESET_ERROR'
-
-export const USERNAME_RESET = 'USERNAME_RESET'
-export const USERNAME_RESET_SUCCESS = 'USERNAME_RESET_SUCCESS'
-export const USERNAME_RESET_ERROR = 'USERNAME_RESET_ERROR'
-
-export const GET_PROJECTS = 'GET_PROJECTS'
-export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS'
-export const GET_PROJECTS_ERROR = 'GET_PROJECTS_ERROR'
-
-export const ADD_TASK = 'ADD_TASK'
-export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS'
-export const ADD_TASK_ERROR = 'UADD_TASK_ERROR'
-
-export const DELETE_TASK = 'DELETE_TASK'
-export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS'
-export const DELETE_TASK_ERROR = 'DELETE_TASK_ERROR'
-
-export const EDIT_TASK = 'EDIT_TASK'
-export const EDIT_TASK_SUCCESS = 'EDIT_TASK_SUCCESS'
-export const EDIT_TASK_ERROR = 'EDIT_TASK_ERROR'
-
-
-export const ADD_PROJECT = 'ADD_PROJECT'
-export const ADD_PROJECT_SUCCESS = 'ADD_PROJECT_SUCCESS'
-export const ADD_PROJECT_ERROR = 'ADD_PROJECT_ERROR'
-
-export const GET_ME = 'GET_ME'
-export const GET_ME_SUCCESS = 'GET_ME_SUCCESS'
-export const GET_ME_ERROR = 'GET_ME_ERROR'
-
-
-export const DELETE_PROJECT = 'DELETE_PROJECT'
-export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS'
-export const DELETE_PROJECT_ERROR = 'DELETE_PROJECT_ERROR'
-
-export const EDIT_PROJECT = 'EDIT_PROJECT'
-export const EDIT_PROJECT_SUCCESS = 'EDIT_PROJECT_SUCCESS'
-export const EDIT_PROJECT_ERROR = 'EDIT_PROJECT_ERROR'
-
-export const ASSIGN_PROJECT = 'ASSIGN_PROJECT'
-export const ASSIGN_PROJECT_SUCCESS = 'ASSIGN_PROJECT_SUCCESS' 
-export const ASSIGN_PROJECT_ERROR = 'ASSIGN_PROJECT_ERROR'
-
+export { addProjectAction,
+        addTaskAction,
+        assignProjectAction,
+        deleteProjectAction, 
+        deleteTaskAction,
+        editProjectAction,
+        editTaskAction,
+        getProjectsAction,
+        loginUserAction,
+        registerUserAction,
+        resetEmailPasswordUsernameAction,
+        getMeAction
+        }

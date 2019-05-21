@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom"
 import * as Styled from './styled.js'
 import { connect } from 'react-redux'
 
-import { loginUserAction } from '../../Actions/authenticationActions'
+import { loginUserAction } from '../../Actions/index'
 
 class Login extends React.Component {
     constructor(props) {

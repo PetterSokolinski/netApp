@@ -3,7 +3,7 @@ import { Button, Grid, Modal, Icon, Dropdown, Button as SemanticButton, Header }
 import * as Styled from './styled.js'
 import { connect } from 'react-redux'
 
-import { deleteTask, editTask } from '../../Actions/authenticationActions'
+import { deleteTaskAction, editTaskAction, getMeAction } from '../../Actions/index'
 const tagsOptions = [
     { key: 'Angular', text: 'Angular', value: 'Angular' },
     { key: 'CSS', text: 'CSS', value: 'CSS' },
@@ -24,7 +24,7 @@ const tagsOptions = [
     { key: 'UI Design', text: 'UI Design', value: 'UI Design' },
     { key: 'User Experience', text: 'User Experience', value: 'User Experience' },
   ]
-// TODO: zmienialne pola dodac
+
 class GridColumn extends React.Component {
     constructor(props) {
         super(props)
@@ -54,7 +54,7 @@ class GridColumn extends React.Component {
     handleDeleteTask = () => {
         const taskId = this.props.object.taskId
         
-        this.props.dispatch(deleteTask(taskId))
+        this.props.dispatch(deleteTaskAction(taskId))
         const user = JSON.parse(localStorage.getItem('user'))
         for(let index = 0; index < user.tasks.length; index++) {
             if(user.tasks[index].taskId === taskId) {
@@ -68,11 +68,11 @@ class GridColumn extends React.Component {
     }
 
     handleTagsChange = (e, { value }) => {
-        if (this.state.stringTags.length > value.length) { // an item has been removed
+        if (this.state.stringTags.length > value.length) { 
             const difference = this.state.stringTags.filter(
                 x => !value.includes(x),
             )
-            console.log(difference) // this is the item
+            console.log(difference) 
             return false
         }
         return this.setState({ stringTags: value })
@@ -90,6 +90,7 @@ class GridColumn extends React.Component {
         const { title, stringTags, projectName, description, finished } = this.state
         let projectID
         for(let index = 0; index < projects.length; index++) {
+            debugger
             if(this.props.object.projectName === projects[index].title) {
                 projectID = projects[index].projectId
             }
@@ -103,7 +104,7 @@ class GridColumn extends React.Component {
         const data = {
             projectID, title, tags, description, taskId, finished
         }
-        this.props.dispatch(editTask(data))
+        this.props.dispatch(editTaskAction(data))
         const user = JSON.parse(localStorage.getItem('user'))
         const dataToDisplay = {
             projectName, title, tags, description
@@ -125,7 +126,7 @@ class GridColumn extends React.Component {
         const data = {
             title, taskId, finished    
         }
-        this.props.dispatch(editTask(data))
+        this.props.dispatch(editTaskAction(data))
         const user = JSON.parse(localStorage.getItem('user'))
         for(let index = 0; index < user.tasks.length; index++) {
             if(user.tasks[index].taskId === taskId) {
@@ -142,7 +143,6 @@ class GridColumn extends React.Component {
         this.setState({finished: !this.state.finished})
       }
 
-
     render() {
         const { object, projectOptions } = this.props
         const { modalDeleteOpen, modalEditOpen } = this.state
@@ -150,6 +150,7 @@ class GridColumn extends React.Component {
         const isFinished = object === undefined ? "" : object.finished ? "Set unfinished" : "Set finished"
         const positive = object === undefined ? false : object.finished ?  false : true
         const negative = object === undefined ? false : object.finished ? true : false
+        console.log(object)
         return (
             <React.Fragment>
                 {(object !== undefined) && 

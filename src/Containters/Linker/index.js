@@ -5,7 +5,8 @@ import Overview from '../Overview'
 import Tasks from '../Tasks'
 import AccountSettings from '../AccountSettings'
 import { withRouter } from "react-router-dom"
-
+import { connect } from 'react-redux'
+import { getMeAction, getProjectsAction } from '../../Actions/index'
 class Linker extends React.Component {
 
     handleComponentRender = () => {
@@ -25,6 +26,8 @@ class Linker extends React.Component {
     }
 
     render() {
+        this.props.dispatch(getProjectsAction())
+        this.props.dispatch(getMeAction())
         return (
             <SidebarMenu>
                 {this.handleComponentRender()}
@@ -33,4 +36,4 @@ class Linker extends React.Component {
     }
  }
 
- export default withRouter(Linker)
+ export default withRouter(connect(null, null)(Linker))

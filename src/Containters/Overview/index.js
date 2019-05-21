@@ -3,8 +3,8 @@ import WeekCalendar from '../../Components/WeekScheduler'
 import 'react-week-calendar/dist/style.css'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { editTask, getMe } from '../../Actions/authenticationActions'
-import moment from 'moment';
+import { editTaskAction, getMeAction } from '../../Actions/index'
+import moment from 'moment'
 
 const Container = styled.div`
     position: absolute;
@@ -26,26 +26,27 @@ class Overview extends React.Component {
   
 
   handleEventRemove = (event) => {
-    const {selectedIntervals} = this.state;
-    const index = selectedIntervals.findIndex((interval) => interval.uid === event.uid);
+    const {selectedIntervals} = this.state
+    const index = selectedIntervals.findIndex((interval) => interval.uid === event.uid)
     if (index > -1) {
-      selectedIntervals.splice(index, 1);
-      this.setState({selectedIntervals});
+      selectedIntervals.splice(index, 1)
+      this.setState({selectedIntervals})
     }
 
   }
 
   handleEventUpdate = (event) => {
-    const {selectedIntervals} = this.state;
-    const index = selectedIntervals.findIndex((interval) => interval.uid === event.uid);
+    const {selectedIntervals} = this.state
+    const index = selectedIntervals.findIndex((interval) => interval.uid === event.uid)
     if (index > -1) {
-      selectedIntervals[index] = event;
-      this.setState({selectedIntervals});
+      selectedIntervals[index] = event
+      this.setState({selectedIntervals})
     }
   }
 
   handleSelect = (newIntervals) => {
     const title = newIntervals[0].value
+    console.log("title", title)
     const toStart = JSON.stringify(newIntervals[0].start)
     const toFinish = JSON.stringify(newIntervals[0].end)
     let taskId
@@ -61,20 +62,21 @@ class Overview extends React.Component {
       toStart,
       toFinish
     }
-    const {lastUid, selectedIntervals} = this.state;
+    const {lastUid, selectedIntervals} = this.state
     const intervals = newIntervals.map( (interval, index) => {
       return {
         ...interval,
         uid: lastUid + index
       }
-    });
+    })
 
     this.setState({
       selectedIntervals: selectedIntervals.concat(intervals),
       lastUid: lastUid + newIntervals.length
     })
-    
-    this.props.dispatch(editTask(data))
+    console.log(data)
+    debugger
+    this.props.dispatch(editTaskAction(data))
     const user = JSON.parse(localStorage.getItem('user'))
     for(let index = 0; index < user.tasks.length; index++) {
       if(title === user.tasks[index].title) {
@@ -100,6 +102,7 @@ class Overview extends React.Component {
     }
     return false
   }
+
 
   componentDidMount() {
     const { selectedIntervals } = this.state

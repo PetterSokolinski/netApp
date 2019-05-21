@@ -7,7 +7,7 @@ import Linker from './Containters/Linker'
 import { Provider } from 'react-redux'
 import configureStore from './Store/configureStore'
 
-const store = configureStore();
+const store = configureStore()
 
 function isLoggedIn() {
   if (!localStorage.getItem('user')) {

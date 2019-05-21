@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 
@@ -7,20 +7,18 @@ const propTypes = {
   start: PropTypes.object.isRequired,
   end: PropTypes.object.isRequired,
   value: PropTypes.string.isRequired,
-};
+}
 
 const TaskName = styled.div`
   font-size: 20px;
   text-align: center;
   color: blue;
-  border-bottom: 1px dashed blue;
 `
 
 const ProjectName = styled.div`
   font-size: 16px;
   text-align: center;
   color: black;
-  border-top: 1px dashed blue;
 `
 
 
@@ -31,7 +29,7 @@ class Event extends React.PureComponent {
       start,
       end,
       value,
-    } = this.props;
+    } = this.props
 
     const tasks = JSON.parse(localStorage.getItem('user')).tasks
     const projects = JSON.parse(localStorage.getItem('projects'))
@@ -57,9 +55,9 @@ class Event extends React.PureComponent {
           {projectName}
         </ProjectName>
       </div>
-    );
+    )
   }
 }
 
-Event.propTypes = propTypes;
-export default Event;
+Event.propTypes = propTypes
+export default Event

@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import moment from 'moment';
+import React from 'react'
+import PropTypes from 'prop-types'
+import moment from 'moment'
 
 
 const propTypes = {
@@ -9,13 +9,13 @@ const propTypes = {
   headerCellComponent: PropTypes.func.isRequired,
   dayFormat: PropTypes.string.isRequired,
   columnDimensions: PropTypes.array.isRequired,
-};
+}
 
 export class CalendarHeader extends React.Component {
   shouldComponentUpdate(nextProps) {
     // for columnDimensions return new object
     return nextProps.numberOfDays !== this.props.numberOfDays || !nextProps.firstDay.isSame(this.props.firstDay, 'day')
-    || nextProps.columnDimensions !== this.props.columnDimensions;
+    || nextProps.columnDimensions !== this.props.columnDimensions
   }
 
   render() {
@@ -24,36 +24,36 @@ export class CalendarHeader extends React.Component {
       numberOfDays,
       dayFormat,
       columnDimensions,
-    } = this.props;
+    } = this.props
 
-    const HeaderCell = this.props.headerCellComponent;
+    const HeaderCell = this.props.headerCellComponent
 
     if (columnDimensions.length === 0) {
-      return null;
+      return null
     }
 
-    const weekdayColumns = [];
-    let totalWidth = 0;
+    const weekdayColumns = []
+    let totalWidth = 0
 
     for (let i = 0; i < numberOfDays; i += 1) {
-      const date = moment(firstDay).add(i, 'd');
-      const { width } = columnDimensions[i];
-      totalWidth += width;
+      const date = moment(firstDay).add(i, 'd')
+      const { width } = columnDimensions[i]
+      totalWidth += width
       const newCell = (
         <div key={i} className="weekCalendar__headerColumn" style={{ width }}>
           <HeaderCell date={date} dayFormat={dayFormat} />
         </div>
-      );
-      weekdayColumns.push(newCell);
+      )
+      weekdayColumns.push(newCell)
     }
 
     return (
       <div style={{ width: totalWidth }} className="weekCalendar__headerWrapper">
         {weekdayColumns}
-      </div>);
+      </div>)
   }
 }
 
-CalendarHeader.propTypes = propTypes;
+CalendarHeader.propTypes = propTypes
 
-export default CalendarHeader;
+export default CalendarHeader

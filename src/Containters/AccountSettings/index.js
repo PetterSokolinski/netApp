@@ -3,7 +3,7 @@ import * as Styled from './styled.js'
 import NestedModal from '../../Components/NestedModal'
 import { Button, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { resetUsername } from '../../Actions/authenticationActions'
+import { resetEmailPasswordUsernameAction } from '../../Actions/index'
 
 class AccountSettings extends React.Component {
     constructor(props) {
@@ -40,10 +40,10 @@ class AccountSettings extends React.Component {
         const data = {  
             username
          }
-         this.props.dispatch(resetUsername(data))
+         this.props.dispatch(resetEmailPasswordUsernameAction(data))
          const user = JSON.parse(localStorage.getItem('user'))
          user.username = username
-         localStorage.setItem('user', JSON.stringify(user));
+         localStorage.setItem('user', JSON.stringify(user))
          window.location.reload(true)
          this.handleToggleModal3()
       }

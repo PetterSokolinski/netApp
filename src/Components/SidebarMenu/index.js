@@ -2,7 +2,7 @@ import React from 'react'
 import { slide as Sidebar } from 'react-burger-menu'
 import * as Styled from './styled.js'
 import { Link, NavLink } from 'react-router-dom'
-import { logout } from '../../Services/authenticationService'
+import { logout } from '../../Services/helpers'
 
 class SidebarMenu extends React.Component {
   constructor(props) {
