@@ -53,7 +53,6 @@ class GridColumn extends React.Component {
 
     handleDeleteTask = () => {
         const taskId = this.props.object.taskId
-        
         this.props.dispatch(deleteTaskAction(taskId))
         const user = JSON.parse(localStorage.getItem('user'))
         for(let index = 0; index < user.tasks.length; index++) {
@@ -89,8 +88,9 @@ class GridColumn extends React.Component {
         const projects = JSON.parse(localStorage.getItem('projects'))
         const { title, stringTags, projectName, description, finished } = this.state
         let projectID
+        debugger
         for(let index = 0; index < projects.length; index++) {
-            if(this.props.object.projectName === projects[index].title) {
+            if(this.state.projectName === projects[index].title) {
                 projectID = projects[index].projectId
             }
         }
