@@ -5,6 +5,9 @@ import userImage from '../../Assets/logouser.png'
 import { Link } from 'react-router-dom'
 import { withRouter } from "react-router-dom"
 import * as Styled from './styled.js'
+import { connect } from 'react-redux'
+
+import { loginUserAction } from '../../Actions/index'
 
 class Login extends React.Component {
     constructor(props) {
@@ -22,9 +25,21 @@ class Login extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.history.push("/overview")
+        const { email, password } = this.state
+        const data = {
+            email, password
+          }
+      
+        this.props.dispatch(loginUserAction(data))
+        //this.props.history.push("/overview")
     }
+
+    
+
     render() {
+        if (localStorage.getItem('user')) {
+            this.props.history.push('/overview')
+        }
         const { email, password } = this.state
         return(
             <React.Fragment>
@@ -64,5 +79,5 @@ class Login extends React.Component {
         )
     }
 }
-
-export default withRouter(Login)
+const mapStateToProps = (response) => ({response})
+export default withRouter(connect(mapStateToProps)(Login))
