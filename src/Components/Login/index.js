@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { withRouter } from "react-router-dom"
 import * as Styled from './styled.js'
 import { connect } from 'react-redux'
-
 import { loginUserAction } from '../../Actions/index'
 
 class Login extends React.Component {
@@ -29,9 +28,7 @@ class Login extends React.Component {
         const data = {
             email, password
           }
-      
-        this.props.dispatch(loginUserAction(data))
-        //this.props.history.push("/overview")
+        this.props.loginUserAction(data)
     }
 
     
@@ -79,5 +76,13 @@ class Login extends React.Component {
         )
     }
 }
-const mapStateToProps = (response) => ({response})
-export default withRouter(connect(mapStateToProps)(Login))
+const mapStateToProps = (response) => ({
+    response
+})
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginUserAction: (data) => dispatch(loginUserAction(data))
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

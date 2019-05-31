@@ -9,16 +9,13 @@ export const loginUserService = (request) => {
       },
       body: JSON.stringify(request.user)
     }
-  
     return fetch(LOGIN_API_ENDPOINT, parameters)
       .then(handleResponse)
       .then(user => {
           if (user) {
-              //user.authdata = window.btoa(request.user.email + ':' + request.user.password)
               localStorage.setItem('user', JSON.stringify(user))
               window.location.reload(true)
           }
-
           return user
       })
   }
